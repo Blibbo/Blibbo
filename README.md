@@ -1,3 +1,4 @@
+This repo is my playground and it is a work in progress. It is currently public because it's convenient for me right now.
 
 Phone build:
 - capacitor
