@@ -1,0 +1,225 @@
+@utility preset-title {
+  @apply font-semibold text-lg;
+}
+
+@utility preset-theme-transition {
+  @apply duration-(--theme-switch-duration) transition-all;
+}
+
+@utility preset-interactive-accent {
+  @apply hover:preset-accent-unlike-page active:preset-accent-unlike-page focus-visible:preset-accent-unlike-page focus-visible:outline-0;
+}
+
+@utility preset-interactive {
+  @apply pointer-events-auto cursor-pointer;
+}
+
+@utility preset-page-wrapper {
+  @apply w-full px-3 md:px-0 md:w-3/4 lg:w-2/3;
+}
+
+@utility preset-topbar-height {
+  @apply h-10 sm:h-12;
+}
+
+@utility preset-blur {
+  @apply backdrop-blur-xs;
+}
+
+@utility preset-interactive-outline {
+  @apply
+    outline outline-transparent
+    hover:outline-accent-readable-on-page active:outline-accent-readable-on-page focus-visible:outline-accent-readable-on-page
+  ;
+}
+
+@utility preset-interactive-translation {
+  @apply hover:-translate-y-1 active:translate-y-0 focus-visible:-translate-y-1;
+}
+
+@utility preset-interactive-shadow {
+  @apply
+    hover:shadow-gray-400 hover:shadow-xl
+    dark:hover:shadow-2xl dark:hover:shadow-black
+
+    active:shadow-gray-400 active:shadow-none
+    dark:active:shadow-none dark:active:shadow-black
+
+    focus-visible:shadow-gray-400 focus-visible:shadow-xl
+    dark:focus-visible:shadow-2xl dark:focus-visible:shadow-black
+  ;
+}
+
+@utility preset-interactive-card {
+  @apply
+    preset-theme-transition
+
+    preset-interactive-outline
+    preset-interactive-translation
+    preset-interactive-shadow
+  ;
+}
+
+/* outlinese */
+
+@utility preset-outline-contrast {
+  @apply outline outline-(--fg) ring-1 ring-(--bg) ring-offset-1;
+}
+
+@utility preset-outline-svg {
+  @apply text-(--bg) stroke-(--fg);
+}
+
+@utility preset-outline-text {
+  @apply text-(--bg) [-webkit-text-stroke:1px_var(--fg)] [paint-order:stroke_fill];
+}
+
+/* colors */
+
+@utility preset-page {
+  --bg: var(--page);
+  --fg: var(--on-page);
+  --primary: var(--accent);
+  --on-primary: var(--on-accent);
+  --primary-unlike: var(--accent-unlike-page);
+  --on-primary-unlike: var(--on-accent-unlike-page);
+  --primary-visible: var(--accent-visible-on-page);
+  --on-primary-visible: var(--on-accent-visible-on-page);
+  --primary-readable: var(--accent-readable-on-page);
+  --on-primary-readable: var(--on-accent-readable-on-page);
+  --secondary: var(--accent2);
+  --on-secondary: var(--on-accent2);
+  --secondary-unlike: var(--accent2-on-page);
+  --on-secondary-unlike: var(--on-accent2-on-page);
+  @apply bg-page text-on-page preset-theme-transition;
+}
+
+@utility accent-unlike-page {
+  --bg: var(--accent-unlike-page);
+  --fg: var(--on-accent-unlike-page);
+  --off: var(--off-accent-unlike-page);
+  --primary: var(--page-unlike-accent);
+  --on-primary: var(--on-page-unlike-accent);
+  --primary-unlike: var(--page);
+  --on-primary-unlike: var(--on-page);
+  --primary-readable: var(--fg);
+  --on-primary-readable: var(--off);
+  --primary-visible: var(--fg);
+  --on-primary-visible: var(--off);
+}
+
+@utility preset-on-page {
+  --bg: var(--color-on-page);
+  --fg: var(--color-page);
+  @apply bg-on-page text-page preset-theme-transition;
+}
+
+@utility preset-page-complementary {
+  --bg: var(--color-page-complementary);
+  --fg: var(--color-on-page-complementary);
+  @apply bg-page-complementary text-on-page-complementary preset-theme-transition;
+}
+
+@utility preset-on-page-complementary {
+  --bg: var(--color-on-page-complementary);
+  --fg: var(--color-page-complementary);
+  @apply bg-on-page-complementary text-page-complementary preset-theme-transition;
+}
+
+@utility preset-next-theme {
+  @apply bg-next-theme text-on-next-theme preset-theme-transition;
+}
+
+@utility preset-accent {
+  --bg: var(--color-accent-opaque);
+  --fg: var(--color-on-accent);
+  @apply bg-accent-opaque text-on-accent preset-theme-transition;
+}
+
+@utility preset-on-accent {
+  --bg: var(--color-on-accent);
+  --fg: var(--color-accent-opaque);
+  @apply bg-on-accent text-accent-opaque preset-theme-transition;
+}
+
+@utility preset-accent-unlike-page {
+  @apply bg-accent-unlike-page text-on-accent-unlike-page preset-theme-transition;
+}
+
+@utility preset-on-accent-unlike-page {
+  @apply bg-on-accent-unlike-page text-accent-unlike-page preset-theme-transition;
+}
+
+@utility preset-accent-complementary {
+  --bg: var(--color-accent-complementary);
+  --fg: var(--color-on-accent-complementary);
+  @apply bg-accent-complementary text-on-accent-complementary preset-theme-transition;
+}
+
+@utility preset-on-accent-complementary {
+  --bg: var(--color-on-accent-complementary);
+  --fg: var(--color-accent-complementary);
+  @apply bg-on-accent-complementary text-accent-complementary preset-theme-transition;
+}
+
+/* overlays */
+
+@utility preset-before {
+  @variant before {
+    @apply inset-0 absolute rounded-[inherit];
+  }
+}
+
+@utility preset-after {
+  @variant after {
+    @apply inset-0 absolute rounded-[inherit];
+  }
+}
+
+/* button */
+
+@utility preset-button-shared {
+  @apply cursor-pointer select-none;
+}
+
+@utility preset-button {
+  @apply preset-button-shared
+    focus-visible:outline-none focus-visible:opacity-button-hover
+    hover:opacity-button-hover
+    active:opacity-button-active
+  ;
+}
+
+@utility preset-button-inverted-shared {
+  @apply
+    preset-button-shared relative preset-after
+    focus-visible:outline-none
+    after:opacity-0
+  ;
+}
+@utility preset-button-accent-page-shared {
+  @apply preset-button-inverted-shared preset-accent after:preset-page;
+}
+
+@utility preset-button-inverted {
+  @apply preset-button-inverted-shared;
+  @variant focus-visible:after {
+    @apply opacity-button-hover-inverted;
+  }
+  @variant hover:after {
+    @apply opacity-button-hover-inverted;
+  }
+  @variant active:after {
+    @apply opacity-button-active-inverted;
+  }
+}
+@utility preset-button-accent-page {
+  @apply preset-button-inverted preset-accent after:preset-page;
+}
+
+/* @utility preset-button-overlay-accent {
+  @apply
+    hover:bg-on-accent/overlay
+    active:bg-off-accent/overlay
+    focus-visible:outline-0 focus-visible:bg-on-accent/overlay;
+} */

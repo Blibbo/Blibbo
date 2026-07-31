@@ -1,0 +1,63 @@
+{
+  "name": "blibbo",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "imports": {
+    "#app.css": "./src/app.css"
+  },
+  "scripts": {
+    "predev": "node scripts/build-app-template.js",
+    "dev": "vite dev",
+    "prebuild": "node scripts/build-app-template.js",
+    "build": "$prod = $Env:VITE_ENV -eq 'production'; ./scripts/launcher.ps1 vite -prod:$prod",
+    "vite:build": "vite build",
+    "studio": "npx cap open android",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "backend:dev": "cd backend && air -c ./.air.server.toml && cd ..",
+    "backend:proxydev": "cd backend && air -c ./.air.proxy.toml",
+    "backend:buildproxy": "cd backend && go build -o ./build/proxy.exe ./cmd/proxy && cd ..",
+    "backend:build": "cd backend && go build -o ./build/server.exe ./cmd/server && cd ..",
+    "backend:serve": "cd backend && ./build/server.exe && cd ..",
+    "backend:serveproxy": "cd backend && ./build/proxy.exe && cd ..",
+    "tauri": "tauri",
+    "tauri:dev": "tauri dev",
+    "tauri:build": "tauri build",
+    "android": "./scripts/launcher.ps1 -prod static -envonly; npx cap sync android; npx cap run android",
+    "preview": "vite preview",
+    "prepare": "ts-patch install"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@ark-ui/svelte": "^5.22.1",
+    "@cortex-js/compute-engine": "^0.55.6",
+    "@tailwindcss/vite": "^4.3.2",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-opener": "^2.5.4",
+    "@tauri-apps/plugin-os": "^2.3.2",
+    "codemirror-lang-latex": "^0.2.0",
+    "colord": "^2.9.3",
+    "loglevel": "^1.9.2",
+    "svelte-codemirror-editor": "^2.1.0",
+    "tailwindcss": "^4.3.2",
+    "type-fest": "^5.6.0",
+    "typia": "^12.1.1"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.460",
+    "@sveltejs/adapter-static": "^3.0.6",
+    "@sveltejs/kit": "^2.9.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "@tauri-apps/cli": "^2.11.4",
+    "@types/node": "^25.6.0",
+    "@typia/unplugin": "^12.1.1",
+    "mathlive": "^0.109.2",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "ts-patch": "^4.0.1",
+    "typescript": "~6.0.3",
+    "unplugin-icons": "^23.0.1",
+    "vite": "^6.0.3"
+  }
+}

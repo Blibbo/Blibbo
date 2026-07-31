@@ -1,0 +1,49 @@
+@theme inline {
+
+  --color-on-dark: var(--on-dark);
+  --color-on-light: var(--on-light);
+
+  --color-page: var(--page);
+  --color-on-page: var(--on-page);
+  --color-off-page: var(--off-page);
+
+  --color-page-complementary: var(--page-complementary);
+  --color-on-page-complementary: var(--on-page-complementary);
+  --color-off-page-complementary: var(--off-page-complementary);
+
+  --color-next-theme: var(--next-theme);
+  --color-on-next-theme: var(--on-next-theme);
+  --color-off-next-theme: var(--off-next-theme);
+
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-off-accent: var(--off-accent);
+
+  --color-accent-opaque: var(--accent-opaque);
+
+  --color-accent-complementary: var(--accent-complementary);
+  --color-on-accent-complementary: var(--on-accent-complementary);
+  --color-off-accent-complementary: var(--off-accent-complementary);
+
+  --color-accent-unlike-page: var(--accent-unlike-page);
+  --color-on-accent-unlike-page: var(--on-accent-unlike-page);
+
+  --color-accent-readable-on-page: var(--accent-readable-on-page);
+  --color-on-accent-readable-on-page: var(--on-accent-readable-on-page);
+
+  --color-accent2: var(--accent2);
+  --color-on-accent2: var(--on-accent2);
+  --color-off-accent2: var(--off-accent2);
+
+  --color-accent2-opaque: var(--accent2-opaque);
+
+  --color-accent2-complementary: var(--accent2-complementary);
+  --color-on-accent2-complementary: var(--on-accent2-complementary);
+  --color-off-accent2-complementary: var(--off-accent2-complementary);
+
+  --color-accent2-unlike-page: var(--accent2-unlike-page);
+  --color-on-accent2-unlike-page: var(--on-accent2-unlike-page);
+
+  --color-accent2-readable-on-page: var(--accent2-readable-on-page);
+  --color-on-accent2-readable-on-page: var(--on-accent2-readable-on-page);
+}

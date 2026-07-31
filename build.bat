@@ -1,0 +1,1 @@
+@pwsh -NoProfile -C scripts/launcher.ps1 %*

@@ -1,0 +1,7 @@
+@reference "~/src/app.css";
+
+@layer components {
+  [data-scope="switch"][data-part="root"] {
+    @apply preset-accent;
+  }
+}

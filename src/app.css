@@ -1,0 +1,40 @@
+@import "tailwindcss";
+@import "$lib/style/css/theme.css";
+@import "$lib/style/css/presets.css";
+
+@font-face {
+  font-family: "brush-script";
+  src: url("/fonts/Brush Script MT Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "papyrus";
+  src: url("/fonts/papyrus.ttf") format("truetype");
+  font-display: swap;
+}
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root, body{
+  min-height: 100dvh;
+}
+
+:root {
+  transition-property: color, background-color;
+  transition-duration: var(--theme-switch-duration);
+}
+
+@theme inline {
+  --opacity-overlay: 20%;
+
+  --opacity-button-hover: 75%;
+  --opacity-button-hover-inverted: calc(100% - var(--opacity-button-hover));
+  --opacity-button-active: 65%;
+  --opacity-button-active-inverted: calc(100% - var(--opacity-button-active));
+
+  --spacing-sait: env(safe-area-inset-top);
+  --spacing-sair: env(safe-area-inset-right);
+  --spacing-saib: env(safe-area-inset-bottom);
+  --spacing-sail: env(safe-area-inset-left);
+}
