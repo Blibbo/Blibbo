@@ -1,0 +1,51 @@
+{
+  "name": "blibbo",
+  "version": "0.1.0",
+  "description": "",
+  "type": "module",
+  "imports": {
+    "#app.css": "./src/app.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build:dev": "vite build --minify false --mode development",
+    "build": "vite build --mode production",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "prepare": "ts-patch install"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@ark-ui/svelte": "^5.22.1",
+    "@cortex-js/compute-engine": "^0.55.6",
+    "@sveltejs/adapter-node": "^5.5.7",
+    "@tailwindcss/vite": "^4.3.2",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-opener": "^2.5.4",
+    "@tauri-apps/plugin-os": "^2.3.2",
+    "@wailsio/runtime": "latest",
+    "codemirror-lang-latex": "^0.2.0",
+    "colord": "^2.9.3",
+    "esbuild": "^0.28.1",
+    "svelte-codemirror-editor": "^2.1.0",
+    "tailwindcss": "^4.3.2",
+    "type-fest": "^5.6.0",
+    "typia": "^12.1.1"
+  },
+  "devDependencies": {
+    "@iconify/json": "^2.2.460",
+    "@sveltejs/adapter-static": "^3.0.6",
+    "@sveltejs/kit": "^2.9.0",
+    "@sveltejs/vite-plugin-svelte": "^7.2.0",
+    "@tauri-apps/cli": "^2.11.4",
+    "@types/node": "^25.6.0",
+    "@typia/unplugin": "^12.1.1",
+    "mathlive": "^0.109.2",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "ts-patch": "^4.0.1",
+    "typescript": "~6.0.3",
+    "unplugin-icons": "^23.0.1",
+    "vite": "^8.2.0"
+  }
+}

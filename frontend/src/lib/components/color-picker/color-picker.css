@@ -1,0 +1,7 @@
+@reference "../../../app.css";
+
+@layer components {
+  [data-scope="color-picker"][data-part="content"] {
+    @apply preset-accent flex flex-col wrap-break-word gap-y-3 w-48 p-3 rounded-md outline outline-(--fg);
+  }
+}

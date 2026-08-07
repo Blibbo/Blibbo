@@ -1,0 +1,89 @@
+@reference "../../../app.css";
+
+@layer components {
+
+  /* Radio & Checkbox */
+  [data-scope="menu"][data-part="item"][data-type="checkbox"],
+  [data-scope="menu"][data-part="item"][data-type="radio"] {
+    @apply flex items-center gap-x-0.5;
+  }
+  [data-scope="menu"][data-part="item"][data-type="checkbox"][data-state="checked"],
+  [data-scope="menu"][data-part="item"][data-type="radio"][data-state="checked"] {
+    @apply after:opacity-50
+  }
+
+  /* Groups */
+  [data-scope="menu"][data-part="radio-item-group"],
+  [data-scope="menu"][data-part="item-group"] {
+    @apply relative;
+  }
+
+  .label-container {
+    @apply relative flex gap-x-1 opacity-button-active items-center;
+    @variant before, after {
+      @apply flex-1 bg-current rounded-full h-px;
+    }
+  }
+
+  [data-scope="menu"][data-part="item-group-label"] {
+    @apply font-semibold text-xs uppercase;
+  }
+
+  /* Separator */
+  [data-scope="menu"][data-part="separator"] {
+    @apply bg-current rounded-full h-px m-px opacity-button-active;
+  }
+
+  /* Content & Arrow */
+  [data-scope="menu"][data-part="content"] {
+    @apply
+      preset-accent rounded-md p-0.75
+      [--arrow-size:--spacing(2)]
+      [--arrow-background:var(--bg)]
+      [--outline:currentcolor]
+      outline outline-(--outline)
+    ;
+  }
+
+  [data-scope="menu"][data-part="arrow-tip"] {
+    @apply preset-after outline outline-(--outline);
+    @variant after {
+      @apply bg-(--arrow-background) origin-left scale-y-185 translate-x-1/2 rotate-45;
+    }
+  }
+
+  /* Item and TriggerItem */
+  [data-scope="menu"]:is([data-part="item"], [data-part="trigger-item"]) {
+    @apply preset-button-accent-page-shared p-0.5 my-0.5 rounded-sm bg-transparent text-current;
+  }
+
+  [data-scope="menu"]:is([data-part="item"], [data-part="trigger-item"])[data-highlighted] {
+    @apply after:opacity-button-hover-inverted;
+  }
+
+  [data-scope="menu"][data-part="trigger-item"] {
+    @apply flex justify-between items-center;
+  }
+  
+  .submenu-icon {
+    @apply duration-200 ease-out;
+  }
+
+  .submenu-icon-active {
+    @apply rotate-180;
+  }
+
+  /* Trigger */
+  [data-scope="menu"][data-part="context-trigger"],
+  [data-scope="menu"][data-part="trigger"] {
+    @apply flex items-center gap-x-0.5 preset-accent rounded-md p-1 preset-button;
+  }
+
+  [data-scope="menu"][data-part="indicator"] {
+    @apply transition-transform duration-200 ease-out;
+  }
+
+  [data-scope="menu"][data-part="indicator"][data-state="open"] {
+    @apply rotate-180;
+  }
+}

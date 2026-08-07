@@ -1,0 +1,19 @@
+@reference "../../../app.css";
+
+@layer components {
+  [data-scope="dialog"][data-part="backdrop"] {
+    @apply fixed inset-0 preset-blur bg-on-light/overlay z-40;
+  }
+
+  [data-scope="dialog"][data-part="positioner"] {
+    @apply fixed inset-0 flex justify-center items-center z-50;
+  }
+
+  [data-scope="dialog"][data-part="content"] {
+    @apply preset-page outline-accent-readable-on-page relative outline p-3 rounded-xl space-y-2;
+  }
+
+  [data-scope="dialog"][data-part="close-trigger"] {
+    @apply absolute top-3 right-3 preset-button;
+  }
+}
