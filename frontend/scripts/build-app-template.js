@@ -1,16 +1,18 @@
 import fs from 'fs';
-import esbuild from 'esbuild';
+import { rolldown } from 'rolldown';
 
-const result = await esbuild.build({
-	entryPoints: ['src/lib/prepaint/prepaint.ts'],
-	bundle: true,
-	minify: true,
-	write: false,
-	format: 'iife',
-	target: ['es2020']
+const bundle = await rolldown({
+	input: 'src/lib/prepaint/prepaint.ts',
 });
 
-const code = result.outputFiles[0].text;
+const { output } = await bundle.generate({
+	format: 'iife',
+	minify: true,
+});
+
+await bundle.close();
+
+const code = output[0].code;
 
 const appHtml = fs.readFileSync('src/app.template.html', 'utf8');
 
