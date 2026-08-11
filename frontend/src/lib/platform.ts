@@ -1,5 +1,6 @@
 import { System } from '@wailsio/runtime';
 
+export const IS_WINDOWS_APP = System.IsWindows();
 export const IS_ANDROID_APP = System.IsAndroid();
 
 // PRIMARY input is a touchscreen

@@ -2,12 +2,19 @@
   import MainLayout from "$lib/components/MainLayout.svelte";
 
   import Card from "$lib/components/Card.svelte";
+  import { GREEN_ACCENT } from "$lib/style/config";
+  import { Greet } from "../../bindings/changeme/greetservice";
 
   const cards = [
     {
       title: "Math",
       description: "The legendary math program",
       href: "/maths"
+    },
+    {
+      title: "Config",
+      description: "My machine's config",
+      href: "/config"
     },
     {
       title: "Path of exile puzzle study",
@@ -24,7 +31,11 @@
       description: "Become a meteorologist",
       href: "/style-test",
     }
-  ]
+  ];
+
+  Greet("ciaoooo").then(value=>{
+    console.log(value)
+  });
 
 </script>
 
