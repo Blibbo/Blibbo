@@ -1,9 +1,10 @@
 <script lang="ts">
   import MainLayout from "$lib/components/MainLayout.svelte";
 
-  import Card from "$lib/components/Card.svelte";
+  import Card from "$lib/components/CardLink.svelte";
   import { GREEN_ACCENT } from "$lib/style/config";
-  import { Greet } from "../../bindings/changeme/greetservice";
+  import { System } from "@wailsio/runtime";
+  import type { ComponentProps } from "svelte";
 
   const cards = [
     {
@@ -12,9 +13,10 @@
       href: "/maths"
     },
     {
-      title: "Config",
-      description: "My machine's config",
-      href: "/config"
+      title: "Automation",
+      description: "My automation software",
+      href: "/automation",
+      hidden: !System.IsDesktop(),
     },
     {
       title: "Path of exile puzzle study",
@@ -31,11 +33,7 @@
       description: "Become a meteorologist",
       href: "/style-test",
     }
-  ];
-
-  Greet("ciaoooo").then(value=>{
-    console.log(value)
-  });
+  ] as const satisfies ComponentProps<typeof Card>[];
 
 </script>
 

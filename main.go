@@ -1,6 +1,8 @@
 package main
 
 import (
+	"blibbo/automation/msys2"
+	"blibbo/automation/scoop"
 	"embed"
 
 	"log"
@@ -43,7 +45,8 @@ func main() {
 		Description: "Blibbo's general purpose app",
 		Services: []application.Service{
 			application.NewService(&GreetService{}),
-			application.NewService(&InstallMSYS2Service{}),
+			application.NewService(&msys2.InstallMSYS2Service{}),
+			application.NewService(&scoop.InstallScoopService{}),
 		},
 		Assets: application.AssetOptions{
 			Handler: application.AssetFileServerFS(assets),
@@ -89,4 +92,5 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
 }

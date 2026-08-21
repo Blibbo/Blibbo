@@ -5,9 +5,6 @@
 // @ts-ignore: Unused imports
 import { Call as $Call, CancellablePromise as $CancellablePromise } from "@wailsio/runtime";
 
-/**
- * InstallMSYS2 installs (or updates) MSYS2. Windows-only implementation.
- */
-export function InstallMSYS2(): $CancellablePromise<void> {
-    return $Call.ByID(190300057);
+export function InstallScoop(): $CancellablePromise<void> {
+    return $Call.ByID(2677535861);
 }

@@ -14,7 +14,11 @@ const config = {
       fallback: "index.html",
       pages: "dist",
       assets: "dist",
-    })
+    }),
+    alias: {
+      $bindings: "bindings",
+      "$bindings/*": "bindings/*",
+    },
   },
 };
 
