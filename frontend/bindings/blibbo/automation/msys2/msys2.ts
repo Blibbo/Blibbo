@@ -5,6 +5,6 @@
 // @ts-ignore: Unused imports
 import { Call as $Call, CancellablePromise as $CancellablePromise } from "@wailsio/runtime";
 
-export function InstallScoop(): $CancellablePromise<void> {
-    return $Call.ByID(2677535861);
+export function Install(): $CancellablePromise<void> {
+    return $Call.ByID(907413995);
 }

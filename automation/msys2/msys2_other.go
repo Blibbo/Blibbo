@@ -4,6 +4,6 @@ package msys2
 
 import "errors"
 
-func installMSYS2() error {
+func install() error {
 	return errors.New("MSYS2 installation is only supported on Windows")
 }

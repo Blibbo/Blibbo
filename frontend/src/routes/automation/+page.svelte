@@ -1,11 +1,11 @@
 <script lang="ts">
 import MainLayout from "$lib/components/MainLayout.svelte";
 
-import { InstallMSYS2 } from "$bindings/blibbo/automation/msys2/installmsys2service";
+import { Msys2 } from "$bindings/blibbo/automation/msys2";
 
 </script>
 
 
 <MainLayout>
-  <button title="" onclick={InstallMSYS2}>pipieeeeepi</button>
+  <button title="" onclick={Msys2.Install}>pipieeeeepi</button>
 </MainLayout>

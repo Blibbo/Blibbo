@@ -4,6 +4,6 @@ package scoop
 
 import "errors"
 
-func installScoop() error {
+func install() error {
 	return errors.New("Scoop installation is only supported on Windows")
 }

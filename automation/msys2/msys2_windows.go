@@ -1,14 +1,14 @@
 package msys2
 
 import (
+	"blibbo/automation/scoop"
 	"fmt"
-	"os/exec"
 )
 
-func installMSYS2() error {
+func install() error {
 
-	if err := exec.Command("wt").Run(); err != nil {
-		return fmt.Errorf("Running command failed: %w", err)
+	if err := scoop.Install(); err != nil {
+		return fmt.Errorf("Couldn't install msys2: %w", err)
 	}
 
 	return nil

@@ -1,7 +1,11 @@
 package scoop
 
-type InstallScoopService struct{}
+type Scoop struct{}
 
-func (i *InstallScoopService) InstallScoop() error {
-	return installScoop()
+func (i *Scoop) Install() error {
+	return install()
+}
+
+func Install() error {
+	return install()
 }

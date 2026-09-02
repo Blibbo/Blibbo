@@ -44,9 +44,8 @@ func main() {
 		},
 		Description: "Blibbo's general purpose app",
 		Services: []application.Service{
-			application.NewService(&GreetService{}),
-			application.NewService(&msys2.InstallMSYS2Service{}),
-			application.NewService(&scoop.InstallScoopService{}),
+			application.NewService(&msys2.Msys2{}),
+			application.NewService(&scoop.Scoop{}),
 		},
 		Assets: application.AssetOptions{
 			Handler: application.AssetFileServerFS(assets),

@@ -1,5 +1,6 @@
 package scoop
 
-func installScoop() error {
+func install() error {
+
 	return nil
 }

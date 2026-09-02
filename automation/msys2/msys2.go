@@ -1,7 +1,11 @@
 package msys2
 
-type InstallMSYS2Service struct{}
+type Msys2 struct{}
 
-func (i *InstallMSYS2Service) InstallMSYS2() error {
-	return installMSYS2()
+func (i *Msys2) Install() error {
+	return install()
+}
+
+func Install() error {
+	return install()
 }
