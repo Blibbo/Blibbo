@@ -17,6 +17,6 @@ let {
   {#if transparencyGrid}
     <ColorPicker.TransparencyGrid class="rounded-full" />
   {/if}
-  <ColorPicker.ChannelSliderTrack class="w-full h-2.5 rounded-full outline outline-(--fg)" />
+  <ColorPicker.ChannelSliderTrack class="w-full h-2.5 rounded-full outline outline-on-surface" />
   <ColorPicker.ChannelSliderThumb class="size-2 -translate-1/2 rounded-full preset-outline-contrast" />
 </ColorPicker.ChannelSlider>

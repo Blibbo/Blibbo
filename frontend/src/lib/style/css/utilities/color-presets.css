@@ -1,0 +1,183 @@
+
+/* primitive */
+
+@utility preset-surface {
+  @apply bg-surface-opaque text-on-surface preset-theme-transition;
+}
+
+@utility preset-primary {
+  @apply bg-primary-opaque text-on-primary preset-theme-transition;
+}
+
+@utility preset-secondary {
+  @apply bg-secondary-opaque text-on-secondary preset-theme-transition;
+}
+
+@utility preset-next-theme {
+  @apply bg-next-theme text-on-next-theme preset-theme-transition;
+}
+
+@utility preset-on-light {
+  @apply bg-on-light text-on-dark preset-theme-transition;
+}
+
+@utility preset-on-dark {
+  @apply bg-on-dark text-on-light preset-theme-transition;
+}
+
+/* inverted contrast */
+
+@utility preset-on-surface {
+  @apply bg-on-surface text-surface preset-theme-transition;
+}
+
+@utility preset-on-primary {
+  @apply bg-on-primary text-primary-opaque preset-theme-transition;
+}
+
+@utility preset-on-secondary {
+  @apply bg-on-secondary text-secondary-opaque preset-theme-transition;
+}
+
+/* complementary */
+
+@utility preset-surface-complementary {
+  @apply bg-surface-complementary text-on-surface-complementary preset-theme-transition;
+}
+
+@utility preset-primary-complementary {
+  @apply bg-primary-complementary text-on-primary-complementary preset-theme-transition;
+}
+
+@utility preset-secondary-complementary {
+  @apply bg-secondary-complementary text-on-secondary-complementary preset-theme-transition;
+}
+
+/* complementary inverted */
+
+@utility preset-on-surface-complementary {
+  @apply bg-on-surface-complementary text-surface-complementary preset-theme-transition;
+}
+
+@utility preset-on-primary-complementary {
+  @apply bg-on-primary-complementary text-primary-complementary preset-theme-transition;
+}
+
+@utility preset-on-secondary-complementary {
+  @apply bg-on-secondary-complementary text-secondary-complementary preset-theme-transition;
+}
+
+/* inverted */
+
+@utility preset-on-surface-inverted {
+  @apply bg-on-surface-inverted text-surface-inverted preset-theme-transition;
+}
+
+@utility preset-on-primary-inverted {
+  @apply bg-on-primary-inverted text-primary-inverted preset-theme-transition;
+}
+
+@utility preset-on-secondary-inverted {
+  @apply bg-on-secondary-inverted text-secondary-inverted preset-theme-transition;
+}
+
+/* cross */
+
+@utility preset-primary-unlike-surface {
+  @apply bg-primary-unlike-surface text-on-primary-unlike-surface preset-theme-transition;
+}
+
+@utility preset-primary-visible-on-surface {
+  @apply bg-primary-visible-on-surface text-on-primary-visible-on-surface preset-theme-transition;
+}
+
+@utility preset-primary-readable-on-surface {
+  @apply bg-primary-readable-on-surface text-on-primary-readable-on-surface preset-theme-transition;
+}
+
+@utility preset-secondary-unlike-surface {
+  @apply bg-secondary-unlike-surface text-on-secondary-unlike-surface preset-theme-transition;
+}
+
+@utility preset-secondary-visible-on-surface {
+  @apply bg-secondary-visible-on-surface text-on-secondary-visible-on-surface preset-theme-transition;
+}
+
+@utility preset-secondary-readable-on-surface {
+  @apply bg-secondary-readable-on-surface text-on-secondary-readable-on-surface preset-theme-transition;
+}
+
+/* @utility preset-surface-unlike-primary {
+  @apply bg-surface-unlike-primary text-on-surface-unlike-primary preset-theme-transition;
+}
+
+@utility preset-surface-visible-on-primary {
+  @apply bg-surface-visible-on-primary text-on-surface-visible-on-primary preset-theme-transition;
+}
+
+@utility preset-surface-readable-on-primary {
+  @apply bg-surface-readable-on-primary text-on-surface-readable-on-primary preset-theme-transition;
+}
+
+@utility preset-surface-unlike-secondary {
+  @apply bg-surface-unlike-secondary text-on-surface-unlike-secondary preset-theme-transition;
+}
+
+@utility preset-surface-visible-on-secondary {
+  @apply bg-surface-visible-on-secondary text-on-surface-visible-on-secondary preset-theme-transition;
+}
+
+@utility preset-surface-readable-on-secondary {
+  @apply bg-surface-readable-on-secondary text-on-surface-readable-on-secondary preset-theme-transition;
+}
+
+@utility preset-primary-unlike-secondary {
+  @apply bg-primary-unlike-secondary text-on-primary-unlike-secondary preset-theme-transition;
+}
+
+@utility preset-primary-visible-on-secondary {
+  @apply bg-primary-visible-on-secondary text-on-primary-visible-on-secondary preset-theme-transition;
+}
+
+@utility preset-primary-readable-on-secondary {
+  @apply bg-primary-readable-on-secondary text-on-primary-readable-on-secondary preset-theme-transition;
+}
+
+@utility preset-secondary-unlike-primary {
+  @apply bg-secondary-unlike-primary text-on-secondary-unlike-primary preset-theme-transition;
+}
+
+@utility preset-secondary-visible-on-primary {
+  @apply bg-secondary-visible-on-primary text-on-secondary-visible-on-primary preset-theme-transition;
+}
+
+@utility preset-secondary-readable-on-primary {
+  @apply bg-secondary-readable-on-primary text-on-secondary-readable-on-primary preset-theme-transition;
+} */
+
+/* cross inverted */
+
+@utility preset-on-primary-unlike-surface {
+  @apply bg-on-primary-unlike-surface text-primary-unlike-surface preset-theme-transition;
+}
+
+@utility preset-on-primary-visible-on-surface {
+  @apply bg-on-primary-visible-on-surface text-primary-visible-on-surface preset-theme-transition;
+}
+
+@utility preset-on-primary-readable-on-surface {
+  @apply bg-on-primary-readable-on-surface text-primary-readable-on-surface preset-theme-transition;
+}
+
+@utility preset-on-secondary-unlike-surface {
+  @apply bg-on-secondary-unlike-surface text-secondary-unlike-surface preset-theme-transition;
+}
+
+@utility preset-on-secondary-visible-on-surface {
+  @apply bg-on-secondary-visible-on-surface text-secondary-visible-on-surface preset-theme-transition;
+}
+
+@utility preset-on-secondary-readable-on-surface {
+  @apply bg-on-secondary-readable-on-surface text-secondary-readable-on-surface preset-theme-transition;
+}
+

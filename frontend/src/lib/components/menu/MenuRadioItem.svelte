@@ -14,8 +14,19 @@ let {
 
 
 <Menu.RadioItem {...rest}>
-  <Menu.ItemIndicator>
+  <Menu.ItemText>{@render children?.()}</Menu.ItemText>
+  <Menu.ItemIndicator hidden={false}>
     <CheckIcon>ciao</CheckIcon>
   </Menu.ItemIndicator>
-  <Menu.ItemText>{@render children?.()}</Menu.ItemText>
 </Menu.RadioItem>
+
+<style>
+@reference "$app.css";
+
+@layer components {
+  :global([data-scope="menu"][data-part="item"][data-type="radio"]) {
+    @apply preset-menu-checkable-item;
+  }
+}
+
+</style>

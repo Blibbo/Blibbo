@@ -1,49 +1,85 @@
+/*
+  surface context tracks the contrast and enables the dark: variant
+*/
+
+@custom-variant dark (@container surface-ctx style(--surface-contrast: white));
+
+/*
+  registering --surface-contrast this way apparently forced the browser to actually calculate its value
+  its value is always set to contrast-var() which does not get evaluated by style() unless the snippet below exists
+*/
+
+@property --surface-contrast {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: black;
+}
+
+@utility preset-surface-context {
+  --surface-contrast: contrast-color(var(--surface));
+  container-type: normal;
+  container-name: surface-ctx;
+}
+
 @theme inline {
 
-  --color-on-dark: var(--on-dark);
-  --color-on-light: var(--on-light);
+  --color-surface: var(--surface);
+  --color-on-surface: var(--on-surface);
+  --color-off-surface: var(--off-surface);
 
-  --color-page: var(--page);
-  --color-on-page: var(--on-page);
-  --color-off-page: var(--off-page);
+  --color-surface-opaque: var(--surface-opaque);
 
-  --color-page-complementary: var(--page-complementary);
-  --color-on-page-complementary: var(--on-page-complementary);
-  --color-off-page-complementary: var(--off-page-complementary);
+  --color-surface-complementary: var(--surface-complementary);
+  --color-on-surface-complementary: var(--on-surface-complementary);
+  --color-off-surface-complementary: var(--off-surface-complementary);
 
-  --color-next-theme: var(--next-theme);
-  --color-on-next-theme: var(--on-next-theme);
-  --color-off-next-theme: var(--off-next-theme);
+  --color-surface-inverted: var(--surface-inverted);
+  --color-on-surface-inverted: var(--on-surface-inverted);
+  --color-off-surface-inverted: var(--off-surface-inverted);
 
-  --color-accent: var(--accent);
-  --color-on-accent: var(--on-accent);
-  --color-off-accent: var(--off-accent);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-off-primary: var(--off-primary);
 
-  --color-accent-opaque: var(--accent-opaque);
+  --color-primary-opaque: var(--primary-opaque);
 
-  --color-accent-complementary: var(--accent-complementary);
-  --color-on-accent-complementary: var(--on-accent-complementary);
-  --color-off-accent-complementary: var(--off-accent-complementary);
+  --color-primary-complementary: var(--primary-complementary);
+  --color-on-primary-complementary: var(--on-primary-complementary);
+  --color-off-primary-complementary: var(--off-primary-complementary);
 
-  --color-accent-unlike-page: var(--accent-unlike-page);
-  --color-on-accent-unlike-page: var(--on-accent-unlike-page);
+  --color-primary-inverted: var(--primary-inverted);
+  --color-on-primary-inverted: var(--on-primary-inverted);
+  --color-off-primary-inverted: var(--off-primary-inverted);
 
-  --color-accent-readable-on-page: var(--accent-readable-on-page);
-  --color-on-accent-readable-on-page: var(--on-accent-readable-on-page);
+  --color-primary-unlike-surface: var(--primary-unlike-surface);
+  --color-on-primary-unlike-surface: var(--on-primary-unlike-surface);
 
-  --color-accent2: var(--accent2);
-  --color-on-accent2: var(--on-accent2);
-  --color-off-accent2: var(--off-accent2);
+  --color-primary-readable-on-surface: var(--primary-readable-on-surface);
+  --color-on-primary-readable-on-surface: var(--on-primary-readable-on-surface);
 
-  --color-accent2-opaque: var(--accent2-opaque);
+  --color-primary-visible-on-surface: var(--primary-visible-on-surface);
+  --color-on-primary-visible-on-surface: var(--on-primary-visible-on-surface);
 
-  --color-accent2-complementary: var(--accent2-complementary);
-  --color-on-accent2-complementary: var(--on-accent2-complementary);
-  --color-off-accent2-complementary: var(--off-accent2-complementary);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-off-secondary: var(--off-secondary);
 
-  --color-accent2-unlike-page: var(--accent2-unlike-page);
-  --color-on-accent2-unlike-page: var(--on-accent2-unlike-page);
+  --color-secondary-opaque: var(--secondary-opaque);
 
-  --color-accent2-readable-on-page: var(--accent2-readable-on-page);
-  --color-on-accent2-readable-on-page: var(--on-accent2-readable-on-page);
+  --color-secondary-complementary: var(--secondary-complementary);
+  --color-on-secondary-complementary: var(--on-secondary-complementary);
+  --color-off-secondary-complementary: var(--off-secondary-complementary);
+
+  --color-secondary-inverted: var(--secondary-inverted);
+  --color-on-secondary-inverted: var(--on-secondary-inverted);
+  --color-off-secondary-inverted: var(--off-secondary-inverted);
+
+  --color-secondary-unlike-surface: var(--secondary-unlike-surface);
+  --color-on-secondary-unlike-surface: var(--on-secondary-unlike-surface);
+
+  --color-secondary-readable-on-surface: var(--secondary-readable-on-surface);
+  --color-on-secondary-readable-on-surface: var(--on-secondary-readable-on-surface);
+
+  --color-secondary-visible-on-surface: var(--secondary-visible-on-surface);
+  --color-on-secondary-visible-on-surface: var(--on-secondary-visible-on-surface);
 }

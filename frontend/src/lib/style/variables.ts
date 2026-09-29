@@ -185,7 +185,7 @@ export function computeContrasts<T extends string>(
 
 // debug
 
-export function getCSSVar(root: HTMLElement, name: string): string{
+export function getCSSVar(root: HTMLElement, name: string): string {
   return getComputedStyle(root).
     getPropertyValue("--" + name).trim();
 }

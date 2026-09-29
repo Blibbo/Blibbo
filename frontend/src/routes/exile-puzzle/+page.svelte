@@ -17,8 +17,8 @@
     getIndexFromSequence[getSequenceFromIndex[i]!] = i;
   }
 
-  const classDisabled = "transition-colors duration-1000 bg-on-page";
-  const classEnabled  = "transition-colors duration-1000 bg-accent-unlike-page";
+  const classDisabled = "transition-colors duration-1000 bg-on-surface";
+  const classEnabled  = "transition-colors duration-1000 bg-primary-unlike-surface";
 
   
   // const classDisabled = "transition-colors duration-1000 bg-red-500";

@@ -25,7 +25,7 @@ const NextThemeIcon = $derived(manager.computed.nextThemeIcon);
   {...rest}
   onclick={()=>{manager.nextTheme()}}
   aria-label="Toggle theme"
-  class="preset-interactive {children ? 'flex space-x-[0.5em] items-center' : ''} {externalClass ?? ''}"
+  class="clickable {children ? 'flex space-x-2 items-center' : ''} {externalClass ?? ''}"
 >
   <NextThemeIcon/>
   {@render children?.()}

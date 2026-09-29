@@ -18,6 +18,7 @@ const config = {
     alias: {
       $bindings: "bindings",
       "$bindings/*": "bindings/*",
+      "$app.css": 'src/app.css',
     },
   },
 };

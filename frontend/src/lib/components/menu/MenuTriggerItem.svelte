@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Menu } from "@ark-ui/svelte";
 import type { ComponentProps } from "svelte";
-import ChevronDown from "virtual:icons/majesticons/chevron-right";
+import ChevronRight from "../icons/ChevronRight.svelte";
 
 type Props = ComponentProps<typeof Menu.TriggerItem>;
 
@@ -16,7 +16,17 @@ let {
   {@render children?.()}
   <Menu.Context>
     {#snippet render(api)}
-      <ChevronDown class="submenu-icon {api().open ? "submenu-icon-active" : ""}"/>
+      <ChevronRight class="duration-200 ease-out {api().open ? "rotate-180" : ""}"/>
     {/snippet}
   </Menu.Context>
 </Menu.TriggerItem>
+
+<style>
+@reference "$app.css";
+
+@layer components {
+  :global([data-scope="menu"][data-part="trigger-item"]) {
+    @apply preset-menu-item flex justify-between items-center;
+  }
+}
+</style>

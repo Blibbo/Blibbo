@@ -26,7 +26,7 @@ let sidePanelOpen = $state(false);
 
 </script>
 
-<div class="block min-h-dvh max-w-dvw overflow-clip
+<div class="preset-page block min-h-dvh max-w-dvw overflow-clip
   sm:flex
 ">
   {#if sidePanel && sidePanelOpen}
@@ -39,7 +39,7 @@ let sidePanelOpen = $state(false);
         flex
         z-50
       ">
-        <div class="preset-accent
+        <div class="preset-primary
           p-1
         ">
           <div class="h-sait"></div>
@@ -49,10 +49,10 @@ let sidePanelOpen = $state(false);
           class="sm:hidden
             flex-1 h-dvh
             preset-blur bg-on-light/overlay
-            flex flex-col justify-start items-start text-on-accent
+            flex flex-col justify-start items-start text-on-primary
           " title="" onclick={()=>{sidePanelOpen = false;}}>
           <div class="h-sait"></div>
-          <div class="preset-interactive p-2 text-2xl">
+          <div class="clickable p-2 text-2xl">
             <Close/>
           </div>
         </button>
@@ -61,10 +61,10 @@ let sidePanelOpen = $state(false);
   {/if}
 
   <div class="sm:flex-1">
-    <div class="preset-accent h-sait"></div>
+    <div class="preset-primary h-sait"></div>
     <div
       class="
-        preset-accent md:flex md:justify-center text-nowrap
+        preset-primary md:flex md:justify-center text-nowrap
         text-md sm:text-xl select-none
         preset-topbar-height
       "
@@ -74,15 +74,15 @@ let sidePanelOpen = $state(false);
         class="
           preset-page-wrapper px-0 flex justify-between items-center h-full
           *:flex *:items-center *:h-full
-          *:*:preset-page *:*:h-full
-          *:*:*:px-3 *:*:*:h-full *:*:*:flex *:*:*:items-center *:*:*:overflow-clip *:*:*:preset-accent *:*:*:preset-theme-transition *:*:*:preset-button
+          *:*:preset-surface *:*:h-full
+          *:*:*:px-3 *:*:*:h-full *:*:*:flex *:*:*:items-center *:*:*:overflow-clip *:*:*:preset-primary *:*:*:preset-theme-transition *:*:*:clickable-fade
         "
       >
         <nav>
 
           {#if sidePanel}
             <div>
-              <button class="preset-interactive" onclick={()=>{sidePanelOpen = !sidePanelOpen}}>
+              <button class="clickable" onclick={()=>{sidePanelOpen = !sidePanelOpen}}>
                 {#if sidePanelOpen}
                   <CloseSidePanel/>
                 {:else}
@@ -110,7 +110,7 @@ let sidePanelOpen = $state(false);
     <div class="
       flex justify-center
     ">
-      <div class="preset-page-wrapper mb-saib">
+      <div class="preset-page-wrapper mb-saib pb-10">
         {@render children?.()}
       </div>
     </div>

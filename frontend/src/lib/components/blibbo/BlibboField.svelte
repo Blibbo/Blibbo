@@ -5,7 +5,7 @@ import MathField from "$lib/components/mathlive/MathField.svelte";
 import CodeMirror, { type CodeMirrorProps } from "svelte-codemirror-editor";
 import { latex } from "codemirror-lang-latex";
 import Menu from "$lib/components/MenuOld.svelte";
-import { tick } from "svelte";
+import { onMount, tick } from "svelte";
 import { EditorView } from "@codemirror/view";
 
 let {
@@ -121,32 +121,32 @@ function handleKeyup(e: KeyboardEvent){
 
 const codeMirrorKeybindings: CodeMirrorProps["keybindings"] = [];
 
-if (onshiftenter) {
-  codeMirrorKeybindings.push({
-    key: "Shift-Enter",
-    run: () => {
-      onshiftenter();
+
+codeMirrorKeybindings.push({
+  key: "Shift-Enter",
+  run: () => {
+    if(!onshiftenter) return false;
+    onshiftenter();
+    return true;
+  }
+});
+
+codeMirrorKeybindings.push({
+  key: "Backspace",
+  run: (view) => {
+    if(!onemptybackspace) return false;
+
+    const { state } = view;
+
+    // only trigger when empty
+    if (state.doc.length === 0) {
+      onemptybackspace();
       return true;
     }
-  });
-}
 
-if (onemptybackspace) {
-  codeMirrorKeybindings.push({
-    key: "Backspace",
-    run: (view) => {
-      const { state } = view;
-
-      // only trigger when empty
-      if (state.doc.length === 0) {
-        onemptybackspace();
-        return true;
-      }
-
-      return false; // allow normal delete
-    }
-  });
-}
+    return false; // allow normal delete
+  }
+});
 
 </script>
 
@@ -162,7 +162,7 @@ if (onemptybackspace) {
       {...textEditorProperties}
       bind:this={editorElement}
       class="{textEditorProperties?.class ?? ''}
-        {!readOnly ? 'focus:outline-2 outline-accent' : 'outline-0'} placeholder:text-accent rounded-xs
+        {!readOnly ? 'focus:outline-2 outline-primary' : 'outline-0'} placeholder:text-primary rounded-xs
         flex-1 w-0 min-h-lh field-sizing-content {false? 'resize-none' : '' /* mozilla hasn't implemented field-sizing-content yet. */} overflow-clip
       "
       bind:value={value}
@@ -209,16 +209,16 @@ if (onemptybackspace) {
     <div class="flex items-center">
       <div>
         <Menu icon=meatballs type=popup
-          class="bg-accent text-on-accent rounded-sm sm:p-2"
+          class="bg-primary text-on-primary rounded-sm sm:p-2"
           tabindex={hideButtonsOnBlur ? -1 : undefined}
         >
-          <div class="text-lg rounded-sm bg-accent text-on-accent p-2 text-nowrap">
+          <div class="text-lg rounded-sm bg-primary text-on-primary p-2 text-nowrap">
             <Menu icon=none >
               {#snippet buttonContent()}
                 Editor type
               {/snippet}
               
-              <div class="mt-2 flex flex-col bg-accent rounded-sm *:cursor-pointer *:p-2 *:hover:bg-white/20">
+              <div class="mt-2 flex flex-col bg-primary rounded-sm *:cursor-pointer *:p-2 *:hover:bg-white/20">
                 <button onclick={()=>{editorType='math'}}>Math</button>
                 <button onclick={()=>{editorType='text'}}>Text</button>
                 <button onclick={()=>{editorType='code'}}>Code</button>

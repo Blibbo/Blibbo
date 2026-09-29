@@ -1,7 +1,7 @@
-@reference "../../../app.css";
+@reference "$app.css";
 
 @layer components {
   [data-scope="switch"][data-part="root"] {
-    @apply preset-accent;
+    @apply flex items-center gap-x-1.5;
   }
 }

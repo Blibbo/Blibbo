@@ -1,0 +1,120 @@
+
+@utility clickable {
+  @apply cursor-pointer pointer-events-auto select-none outline outline-transparent;
+}
+
+@utility clickable-fade {
+  @apply clickable
+    focus-visible:opacity-clickable-lit
+    hover:opacity-clickable-lit
+    active:opacity-clickable-pressed
+    pointer-coarse:active:opacity-clickable-lit
+  ;
+}
+
+@utility clickable-fade-primary {
+  @apply clickable-fade preset-primary preset-outline-primary;
+}
+
+/* fading overlay on top of elements */
+
+@utility clickable-overlay-rest {
+  @apply clickable relative preset-after after:opacity-0;
+}
+
+@utility clickable-overlay-lit {
+  @apply after:opacity-clickable-lit-inverted;
+}
+
+@utility clickable-overlay-pressed {
+  @apply after:opacity-clickable-pressed-inverted;
+}
+
+@utility clickable-overlay {
+  @apply clickable-overlay-rest
+    focus-visible:clickable-overlay-lit
+    hover:clickable-overlay-lit
+    active:clickable-overlay-pressed
+    pointer-coarse:active:clickable-overlay-lit
+  ;
+}
+
+@utility clickable-overlay-rest-primary {
+  @apply clickable-overlay-rest after:bg-primary;
+}
+
+@utility clickable-overlay-primary {
+  @apply clickable-overlay after:bg-primary;
+}
+
+/* interactive outlines */
+
+@utility clickable-outline-primary {
+  @apply
+    clickable
+    hover:preset-outline-primary
+    focus-visible:preset-outline-primary
+    active:preset-outline-primary
+  ;
+}
+
+@utility clickable-outline-secondary {
+  @apply
+    clickable
+    hover:preset-outline-secondary
+    focus-visible:preset-outline-secondary
+    active:preset-outline-secondary
+  ;
+}
+
+/* interactive card utils */
+
+@utility clickable-translation {
+  @apply
+    clickable
+    hover:-translate-y-1
+    focus-visible:-translate-y-1
+    active:translate-y-0
+    pointer-coarse:active:-translate-y-1
+  ;
+}
+
+@utility clickable-shadow {
+  @apply
+    clickable
+    hover:preset-shadow
+    focus-visible:preset-shadow
+    active:shadow-none
+    pointer-coarse:active:preset-shadow
+  ;
+}
+
+@utility clickable-card {
+  @apply
+    clickable preset-card preset-theme-transition
+
+    clickable-outline-primary
+    clickable-translation
+    clickable-shadow
+  ;
+}
+
+/* auto colors */
+
+@utility clickable-primary {
+  @apply
+    clickable
+    hover:preset-primary-visible-on-surface
+    active:preset-primary-visible-on-surface
+    focus-visible:preset-primary-visible-on-surface
+  ;
+}
+
+@utility clickable-next-theme {
+  @apply
+    clickable
+    hover:preset-next-theme
+    focus-visible:preset-next-theme
+    active:preset-next-theme
+  ;
+}

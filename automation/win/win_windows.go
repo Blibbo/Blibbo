@@ -47,23 +47,19 @@ func quoteWindowsArg(s string) string {
 	return b.String()
 }
 
-func pippo(args ...string) error {
-
-}
-
-func ShellAsync(args ...string) error {
+func getVerbFileParams(windowsShellVerb string, args ...string) (*uint16, *uint16, *uint16, error) {
 	if len(args) == 0 {
-		return fmt.Errorf("no executable specified")
+		return nil, nil, nil, fmt.Errorf("no executable specified")
 	}
 
 	file, err := windows.UTF16PtrFromString(args[0])
 	if err != nil {
-		return fmt.Errorf("couldn't encode executable path: %w", err)
+		return nil, nil, nil, fmt.Errorf("couldn't encode executable path: %w", err)
 	}
 
-	verb, err := windows.UTF16PtrFromString("open")
+	verb, err := windows.UTF16PtrFromString(windowsShellVerb)
 	if err != nil {
-		return fmt.Errorf("couldn't encode shell verb: %w", err)
+		return nil, nil, nil, fmt.Errorf("couldn't encode shell verb: %w", err)
 	}
 
 	var params *uint16
@@ -75,10 +71,19 @@ func ShellAsync(args ...string) error {
 
 		p, err := windows.UTF16PtrFromString(strings.Join(quotedArgs, " "))
 		if err != nil {
-			return fmt.Errorf("couldn't encode arguments: %w", err)
+			return nil, nil, nil, fmt.Errorf("couldn't encode arguments: %w", err)
 		}
 
 		params = p
+	}
+
+	return verb, file, params, nil
+}
+
+func verbShellAsync(windowsShellVerb string, args ...string) error {
+	verb, file, params, err := getVerbFileParams(windowsShellVerb, args...)
+	if err != nil {
+		return fmt.Errorf("couldn't run ShellExecute: %w", err)
 	}
 
 	if err := windows.ShellExecute(
@@ -120,34 +125,10 @@ type shellExecuteInfo struct {
 	hProcess       windows.Handle
 }
 
-func Shell(args ...string) error {
-	if len(args) == 0 {
-		return fmt.Errorf("no executable specified")
-	}
-
-	file, err := windows.UTF16PtrFromString(args[0])
+func verbShell(windowsShellVerb string, args ...string) error {
+	verb, file, params, err := getVerbFileParams(windowsShellVerb, args...)
 	if err != nil {
-		return fmt.Errorf("couldn't encode executable path: %w", err)
-	}
-
-	verb, err := windows.UTF16PtrFromString("open")
-	if err != nil {
-		return fmt.Errorf("couldn't encode shell verb: %w", err)
-	}
-
-	var params *uint16
-	if len(args) > 1 {
-		quotedArgs := make([]string, len(args)-1)
-		for i, arg := range args[1:] {
-			quotedArgs[i] = quoteWindowsArg(arg)
-		}
-
-		p, err := windows.UTF16PtrFromString(strings.Join(quotedArgs, " "))
-		if err != nil {
-			return fmt.Errorf("couldn't encode arguments: %w", err)
-		}
-
-		params = p
+		return fmt.Errorf("couldn't run ShellExecuteExW: %w", err)
 	}
 
 	sei := shellExecuteInfo{
@@ -186,4 +167,20 @@ func Shell(args ...string) error {
 	}
 
 	return nil
+}
+
+func Shell(args ...string) error {
+	return verbShell("open", args...)
+}
+
+func ShellAsync(args ...string) error {
+	return verbShellAsync("open", args...)
+}
+
+func ShellAdmin(args ...string) error {
+	return verbShell("runas", args...)
+}
+
+func ShellAsyncAdmin(args ...string) error {
+	return verbShellAsync("runas", args...)
 }

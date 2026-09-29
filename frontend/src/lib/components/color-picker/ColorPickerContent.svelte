@@ -25,12 +25,12 @@ const ctx = getColorPickerContext();
     {...rest}
   >
     <ColorPicker.Area class="h-24">
-      <ColorPicker.AreaBackground class="size-full rounded-md outline outline-(--fg)"/>
+      <ColorPicker.AreaBackground class="size-full rounded-md outline outline-on-surface"/>
       <ColorPicker.AreaThumb class="rounded-full size-4 preset-outline-contrast" />
     </ColorPicker.Area>
     <div class="flex space-x-2">
       <ColorPicker.EyeDropperTrigger
-        class="size-8 flex justify-center items-center preset-button rounded-md outline outline-(--fg)"
+        class="size-8 flex justify-center items-center clickable-fade rounded-md outline outline-on-surface"
       >
         <PickerIcon/>
       </ColorPicker.EyeDropperTrigger>
@@ -44,11 +44,11 @@ const ctx = getColorPickerContext();
       </div>
     </div>
     <ColorPicker.ChannelInput channel="hex"
-      class="p-1 rounded-md outline outline-(--fg) w-full"
+      class="p-1 rounded-md outline outline-on-surface w-full"
     />
     <ColorPickerSwatchGroup {swatches}/>
     {#if ctx().errorMsg}
-      <p class="bg-(--fg) text-(--bg) text-xs rounded-md p-1">{ctx().errorMsg}</p>
+      <p class="bg-on-surface text-surface text-xs rounded-md p-1">{ctx().errorMsg}</p>
     {/if}
   </ColorPicker.Content>
 </ColorPicker.Positioner>

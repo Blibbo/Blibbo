@@ -1,0 +1,108 @@
+@utility preset-title {
+  @apply font-semibold text-lg;
+}
+
+@utility preset-theme-transition {
+  @apply duration-(--theme-switch-duration) transition-all;
+}
+
+@utility preset-page-wrapper {
+  @apply w-full px-3 md:px-0 md:w-3/4 lg:w-2/3;
+}
+
+@utility preset-topbar-height {
+  @apply h-10 sm:h-12;
+}
+
+@utility preset-blur {
+  @apply backdrop-blur-xs;
+}
+
+@utility preset-shadow {
+  @apply shadow-gray-400 shadow-xl dark:shadow-2xl dark:shadow-black;
+}
+
+@utility preset-card {
+  @apply rounded-2xl p-4;
+}
+
+@utility preset-input {
+  @apply text-primary-readable-on-surface preset-outline-primary rounded-md p-1;
+}
+
+@utility preset-windicator {
+  @apply flex justify-between items-center gap-x-0.5;
+}
+
+/* menu */
+
+@utility preset-menu {
+  @apply preset-accent preset-surface rounded-md p-0.75 preset-outline-primary;
+}
+
+@utility preset-menu-item {
+  @apply
+    clickable-overlay-rest-primary data-highlighted:clickable-overlay-lit
+    px-1 py-0.5 my-0.5 rounded-sm
+  ;
+}
+
+@utility preset-menu-checkable-item {
+  @apply preset-menu-item preset-windicator *:data-[part=item-indicator]:data-[state=unchecked]:opacity-0;
+
+  @variant data-[state=checked] {
+    @apply after:opacity-50;
+  }
+}
+
+@utility preset-menu-separator {
+  @apply bg-primary-readable-on-surface rounded-full h-0.25 m-0.25;
+}
+
+@utility preset-menu-label-container {
+  @apply
+    text-primary-readable-on-surface flex gap-x-1 items-center
+    font-semibold text-xs uppercase
+  ;
+  
+  @variant before, after {
+    @apply flex-1 preset-menu-separator;
+  }
+}
+
+/* outlines */
+
+@utility preset-outline-primary {
+  @apply outline outline-primary-readable-on-surface;
+}
+
+@utility preset-outline-secondary {
+  @apply outline outline-secondary-readable-on-surface;
+}
+
+@utility preset-outline-contrast {
+  @apply outline outline-on-surface ring-1 ring-surface ring-offset-1;
+}
+
+@utility preset-outline-svg {
+  @apply text-surface stroke-on-surface;
+}
+
+@utility preset-outline-text {
+  @apply text-surface [-webkit-text-stroke:1px_var(--on-surface)] [paint-order:stroke_fill];
+}
+
+/* overlays */
+
+@utility preset-before {
+  @variant before {
+    @apply inset-0 absolute rounded-[inherit];
+  }
+}
+
+@utility preset-after {
+  @variant after {
+    @apply inset-0 absolute rounded-[inherit];
+  }
+}
+

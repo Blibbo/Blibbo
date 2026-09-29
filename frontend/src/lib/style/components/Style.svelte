@@ -1,11 +1,11 @@
 <script lang="ts">
-import type { StyleConfig } from "./config";
+import type { StyleConfig } from "../config";
 import { type Snippet } from "svelte";
-import { getStyleContext, setStyleContext, StyleManager } from "./main.svelte";
+import { getStyleContext, setStyleContext, StyleManager } from "../main.svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { STYLE_ROOT } from "../prepaint/shared";
-import type { StyleRuntimeInfo } from "./derived";
-    import type { ColorVariables } from "./variables";
+import { STYLE_ROOT } from "../../prepaint/shared";
+import type { StyleRuntimeInfo } from "../derived";
+import type { ColorVariables } from "../variables";
 
 type Props = {
   persistKey: string;
@@ -17,6 +17,7 @@ const {
   persistKey,
   defaultStyle,
   children,
+  class: className,
   ...divProps
 }: Props = $props();
 
@@ -53,6 +54,7 @@ if(isRoot){
 {:else}
   <div
     {@attach initialize}
+    class="preset-page {className ?? ""}"
     { ...divProps }
   >
     {@render children()}

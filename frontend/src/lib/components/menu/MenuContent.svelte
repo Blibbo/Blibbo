@@ -26,3 +26,29 @@ let {
     </Menu.Content>
   </Menu.Positioner>
 </Portal>
+
+<style>
+@reference "$app.css";
+
+:global{
+
+  [data-scope="menu"][data-part="arrow-tip"] {
+    @apply preset-after outline outline-primary-readable-on-surface;
+    @variant after {
+      @apply bg-(--arrow-background) origin-left scale-y-185 translate-x-1/2 rotate-45;
+    }
+  }
+
+  @layer components {
+    [data-scope="menu"][data-part="content"] {
+      @apply
+        preset-menu
+        [--arrow-size:--spacing(2)]
+        [--arrow-background:var(--surface)]
+      ;
+    }
+  }
+}
+
+
+</style>

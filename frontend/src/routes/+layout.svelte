@@ -1,6 +1,6 @@
 <script lang="ts">
-import "../app.css";
-import Style from "$lib/style/Style.svelte";
+import "$app.css";
+import Style from "$lib/style/components/Style.svelte";
 import { DEFAULT_PRESET, STYLE_PRESETS } from "../lib/style/config";
 
 let { children } = $props();

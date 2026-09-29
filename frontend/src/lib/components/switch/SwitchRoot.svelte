@@ -12,18 +12,16 @@ let {
 
 </script>
 
-<!-- bg-page data-[state=unchecked]:bg-on-page -->
-<Switch.Root
-  class="block w-8 p-0.5 rounded-full
-    bg-accent data-[state=unchecked]:opacity-50
-  " {...rest}>
-  <Switch.Control class="block">
-    <!-- bg-accent-unlike-page -->
+<!-- bg-surface data-[state=unchecked]:bg-on-surface -->
+<Switch.Root {...rest}>
+  <Switch.Control
+    class="block w-8 h-fit p-0.5 rounded-full bg-primary-readable-on-surface data-[state=unchecked]:opacity-50"
+  >
     <Switch.Thumb class="block size-4 rounded-full
       data-[state=checked]:translate-x-3 transition-transform
-      bg-page
+      bg-surface data-[state=unchecked]:opacity-25
     "/>
   </Switch.Control>
-  <Switch.Label>{@render children?.()}</Switch.Label>
+  <Switch.Label class="">{@render children?.()}</Switch.Label>
   <Switch.HiddenInput/>
 </Switch.Root>

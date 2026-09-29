@@ -2,8 +2,8 @@ package msys2
 
 import (
 	"blibbo/automation/scoop"
-	"blibbo/automation/win"
 	"fmt"
+	"os/exec"
 )
 
 func install() error {
@@ -12,12 +12,8 @@ func install() error {
 		return fmt.Errorf("Couldn't install msys2: %w", err)
 	}
 
-	win.ShellAsync("outargv", "hello", "world", "hello world")
-	win.Shell("outargv", "hello", "world", "hello world")
-
-	// win.Shell("powershell", "-C", "Start-Sleep 3")
-	// exec.Command("powershell", "-C", "Start-Sleep 3").Run()
-	// exec.Command("wt").Run()
+	// win.Shell("powershell")
+	exec.Command("powershell").Run()
 
 	return nil
 }

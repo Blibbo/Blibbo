@@ -15,11 +15,11 @@ let {
 </script>
 
 {#if swatches}
-  <ColorPicker.SwatchGroup class="flex flex-wrap gap-[0.3rem]" {...rest}>
+  <ColorPicker.SwatchGroup class="flex flex-wrap gap-[0.3em]" {...rest}>
     {#each swatches as color}
       <ColorPicker.SwatchTrigger value={color}>
         <ColorPicker.Swatch value={color}
-          class="size-6 flex justify-center items-center rounded-md outline outline-(--fg)"
+          class="size-6 flex justify-center items-center rounded-md outline outline-on-surface"
         >
           <ColorPicker.SwatchIndicator>
             <CheckIcon class="preset-outline-svg"/>

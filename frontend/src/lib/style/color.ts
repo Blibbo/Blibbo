@@ -11,7 +11,7 @@ const OPAQUE: unique symbol = Symbol("OPAQUE");
 const READABLE_ON_LIGHT: unique symbol = Symbol("READABLE_ON_LIGHT");
 const READABLE_ON_DARK: unique symbol = Symbol("READABLE_ON_DARK");
 
-const KEEP_COLORD_IN_MEMORY = true;
+const KEEP_COLORD_IN_MEMORY = true; // if I don't, I lose floating point precision
 
 // Wrapper for Colord.
 // Reason 1: branded type gives some safety over the color being valid.
@@ -20,7 +20,6 @@ const KEEP_COLORD_IN_MEMORY = true;
 // Reason 3: preserves raw string the color was constructed with,
 //    which colord doesn't remember
 // Reason 4: allows me to mess around with keeping the colord objects in memory or not.
-//    Not that it'll make a difference, but I liked the option
 class ValidColor {
   readonly [VALID]!: void;
 
@@ -98,9 +97,14 @@ export function readableOnDark(color: string | Colord): ReadableOnDark {
 export function toOpaque(color: ValidColor, opaqueBase: OpaqueColor): OpaqueColor {
   const original = color.d();
   const newColor = opaqueBase.d().mix(original, original.alpha()).alpha(1);
-  // newColor now has hue information you don't actually care about here if you're darkening later.
-  // to delete it, I'll go through rgb
-  return opaqueColor(newColor.toHex());
+  // if newColor is white, a rounding error in the library encodes high saturation and green hue.
+  // if darkening, it'll cause problems. I'll pass through rgb to normalize
+  // return opaqueColor(newColor.toHex());
+
+  // actually... for black and white colors, let's encode the hue of the base so that it looks good when darkening/lightening
+  if(opaqueBase.d().isEqual(WHITE))
+    return opaqueColor(newColor.toHex());
+  return absorbHueAndSaturation(opaqueBase, opaqueColor(newColor));
 }
 
 // guard against unintentionally checking for a transparent color's lightness, which is a mistake in my opinion
@@ -165,4 +169,16 @@ export function computeColor1OnColor2(
   }
  
   return current;
+}
+
+const BLACK = colord("#000");
+const WHITE = colord("#fff");
+
+export function hasNoHueInformation(color: OpaqueColor): boolean {
+  const d = color.d();
+  return d.isEqual(BLACK) || d.isEqual(WHITE);
+}
+
+export function absorbHueAndSaturation(hueCarrier: OpaqueColor, whiteOrBlackColor: OpaqueColor): OpaqueColor {
+  return opaqueColor(hueCarrier.d().mix(whiteOrBlackColor.d(), .9999));
 }

@@ -6,14 +6,25 @@ type Props = ComponentProps<typeof Menu.ItemGroupLabel>;
 
 let {
   children,
-  class: labelClasses,
+  class: className,
   ...rest
 }: Props = $props();
 
 </script>
 
-<div class="label-container {labelClasses ?? ""}">
+<div class={className}>
   <Menu.ItemGroupLabel {...rest}>
     {@render children?.()}
   </Menu.ItemGroupLabel>
 </div>
+
+<style>
+@reference "$app.css";
+
+@layer components {
+  div {
+    @apply preset-menu-label-container;
+  }
+}
+
+</style>

@@ -14,7 +14,7 @@ export const Menu = Object.assign(MenuRoot, {
   Content: MenuContent,
   TriggerItem: MenuTriggerItem,
   Separator: Ark.Separator,
-  ItemGroup: Ark.ItemGroup,
+  Group: Ark.ItemGroup,
   GroupLabel: MenuGroupLabel,
   RadioGroup: Ark.RadioItemGroup,
   RadioItem: MenuRadioItem,

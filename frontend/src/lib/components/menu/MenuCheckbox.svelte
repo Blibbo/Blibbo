@@ -13,8 +13,19 @@ let {
 </script>
 
 <Menu.CheckboxItem {...rest}>
-  <Menu.ItemIndicator>
+  <Menu.ItemText>{@render children?.()}</Menu.ItemText>
+  <Menu.ItemIndicator hidden={false}>
     <CheckIcon/>
   </Menu.ItemIndicator>
-  <Menu.ItemText>{@render children?.()}</Menu.ItemText>
 </Menu.CheckboxItem>
+
+<style>
+@reference "$app.css";
+
+@layer components {
+  :global([data-scope="menu"][data-part="item"][data-type="checkbox"]) {
+    @apply preset-menu-checkable-item;
+  }
+}
+
+</style>

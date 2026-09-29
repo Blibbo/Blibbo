@@ -13,8 +13,9 @@ const manager = getStyleContext();
   <Dialog.Trigger icon="cog"/>
   <Dialog.Content>
     <Dialog.Title class="preset-title">Settings</Dialog.Title>
+
     <div>
-      <NextTheme class="hover:preset-next-theme focus-visible:preset-next-theme active:preset-next-theme focus-visible:outline-none preset-theme-transition p-2 rounded-lg">
+      <NextTheme class="clickable-next-theme p-2 rounded-lg">
         <p>Next theme</p>
       </NextTheme>
     </div>
@@ -25,6 +26,8 @@ const manager = getStyleContext();
         <ColorPicker.Content swatches={[ACCENT, JENNI_ACCENT, BLUE_ACCENT, GREEN_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT]}/>
       </ColorPicker>
     {/if}
+
+    <button class="clickable-fade text-primary-readable-on-surface" onclick={()=>manager.reset()}>Reset style</button>
   </Dialog.Content>
 </Dialog>
 

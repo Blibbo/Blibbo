@@ -1,15 +1,15 @@
 <script lang="ts">
 import MainLayout from "$lib/components/MainLayout.svelte";
-import { ACCENT, BLUE_ACCENT, JENNI_ACCENT, STYLE_PRESETS } from "$lib/style/config";
+import { DEFAULT_PRESET, STYLE_PRESETS } from "$lib/style/config";
 import { getStyleContext, overrideStyle } from "$lib/style/main.svelte";
 import { opaqueColor } from "$lib/style/color";
-import TagsInput from "$lib/components/TagsInput.svelte";
-import { Menu } from "$lib/components/menu";
-import { ColorPicker } from "$lib/components/color-picker";
-import { Switch } from "$lib/components/switch";
 import { staticAccent } from "$lib/style/accent";
+import StyleTest from "$lib/style/components/StyleTest.svelte";
+import { Menu } from "$lib/components/menu";
+import { Switch } from "$lib/components/switch";
+import Select from "$lib/components/Select.svelte";
 
-overrideStyle("test-page", STYLE_PRESETS.weather);
+overrideStyle("test-surface", STYLE_PRESETS.weather);
 
 const manager = getStyleContext();
 
@@ -17,7 +17,7 @@ function lightning() {
   const oldColor = manager.active.Page;
   const oldAccent = manager.active.Accent;
   manager.active.Page = opaqueColor("#fff");
-  manager.active.Accent = staticAccent("#000");
+  manager.active.Accent = staticAccent("#fff");
   setTimeout(() => {
     manager.active.Page = oldColor;
     manager.active.Accent = oldAccent;
@@ -27,90 +27,60 @@ function lightning() {
 </script>
 
 <MainLayout>
-  <div>
+  <div class="space-y-2">
 
     <div class="w-full flex justify-center mt-2">
       <button
-        class="rounded-lg bg-accent preset-accent preset-button p-2 text-2xl"
+        class="clickable-fade-primary rounded-lg p-2 text-2xl"
         title=""
         onclick={lightning}
       >Cast lightning</button>
     </div>
 
-  </div>
-  <!-- <div class="bg-accent h-12 w-12"></div> -->
 
-  <!-- <Style
-    persistKey="super-test"
-    defaultStyle={DEFAULT_PRESET}
-  >
-    <div class="bg-accent h-12 w-12"></div>
-  </Style> -->
+    <StyleTest
+      persistKey="super-test"
+      defaultStyle={DEFAULT_PRESET}
+    />
 
-  <!-- <TagsInput
-    defaultValue={['Vanilla', 'Chocolate', 'Strawberry']}
-    label=Flavors
-  />
-  
-  <Dialog aria-label="" icon=cog>
-    <div class="space-y-1">
-      <h2 class="preset-title">test</h2>
-      <p>test 2asfasdfdsafa</p>
-    </div>
-  </Dialog> -->
+    <!-- <TagsInput
+      defaultValue={['Vanilla', 'Chocolate', 'Strawberry']}
+      label=Flavors
+    /> -->
 
-  <div class="space-y-2">
+    <Select closeOnSelect={false} items={[
+      { label: 'React', value: 'react', type: "type 1" },
+      { label: 'Solid', value: 'solid', type: "type 2" },
+      { label: 'Vue', value: 'vue', type: "type 1" },
+      { label: 'Svelte', value: 'svelte', type: "type 2" },
+    ]} groupBy={i=>i.type} placeholder=Select label=Frameworks>
+    </Select>
 
-    <Menu onSelect={(id)=>{console.log(id)}}>
-      <Menu.Trigger>
-        Click me
-      </Menu.Trigger>
-      <Menu.Content arrow class="preset-vars-accent-complementary">
-        <Menu.ItemGroup>
-          <Menu.GroupLabel>Caccamo</Menu.GroupLabel>
-          <Menu.Item value="caccamo-1">caccamo 1</Menu.Item>
-          <Menu.Item value="caccamo-2">opzione caccamo 22222222222222222222222</Menu.Item>
-          <Menu.Item value="caccamo-3">cacchina</Menu.Item>
-        </Menu.ItemGroup>
-        <Menu.ItemGroup>
-          <Menu.GroupLabel>Normali</Menu.GroupLabel>
-          <Menu.Item value="test-value">TEST OPTION</Menu.Item>
-          <Menu.Item value="test-value2">TEST OPTION 2</Menu.Item>
-          <Menu.Separator/>
-          <Menu>
-            <Menu.TriggerItem>
-              ciaoooooo
-            </Menu.TriggerItem>
-            <Menu.Content>
-              <Menu.Item value="shtuchez">UELALAAAAAAAAA</Menu.Item>
-              <Menu.Item value="PIPI">MIMIMIMI</Menu.Item>
-            </Menu.Content>
-          </Menu>
-        </Menu.ItemGroup>
+    <Menu closeOnSelect={false}>
+      <Menu.Trigger>Menu trigger</Menu.Trigger>
+      <Menu.Content arrow>
+        <Menu.Group>
+          <Menu.GroupLabel>Group label</Menu.GroupLabel>
+          <Menu.Item value="item-1">Item 1 looooooooooooooong</Menu.Item>
+        </Menu.Group>
+        <Menu.Separator/>
+        <Menu.Item value="item-2">Item 2</Menu.Item>
         <Menu.RadioGroup>
-          <Menu.GroupLabel>radio schtuchez</Menu.GroupLabel>
-          <Menu.RadioItem value="1-for-sure">PISCIO</Menu.RadioItem>
-          <Menu.RadioItem value="idk-2-i-think">weeee</Menu.RadioItem>
+          <Menu.GroupLabel>Radio label</Menu.GroupLabel>
+          <Menu.RadioItem value="radio-1">Radio 1</Menu.RadioItem>
+          <Menu.RadioItem value="radio-2">Radio 2</Menu.RadioItem>
         </Menu.RadioGroup>
         <Menu.Separator/>
-        <Menu.Checkbox checked={false} value="check-1">PISCIO</Menu.Checkbox>
-        <Menu.Checkbox checked value="check-2">weeee</Menu.Checkbox>
+        <Menu closeOnSelect={false}>
+          <Menu.TriggerItem>Submenu trigger</Menu.TriggerItem>
+          <Menu.Content>
+            <Menu.Checkbox checked={false} value="check-1">Nested checkbox 1</Menu.Checkbox>
+            <Menu.Checkbox checked={false} value="check-2">Nested checkbox 2</Menu.Checkbox>
+          </Menu.Content>
+        </Menu>
       </Menu.Content>
     </Menu>
 
-    <!-- <ColorPicker value={getStyleContext().runtime.accent.value}> -->
-    <ColorPicker>
-      <ColorPicker.Trigger>Accent Color</ColorPicker.Trigger>
-      <ColorPicker.Content swatches={[ACCENT, JENNI_ACCENT, BLUE_ACCENT]}/>
-    </ColorPicker>
-
-    <div>
-    <Switch checked={true}/>
-
-    </div>
-    <Switch checked={false}/>
-
-    <div class="h-12 w-12 rounded-full bg-red-500 transition-all duration-200 hover:mix-blend-difference"></div>
-
+    <Switch>Switch label</Switch>
   </div>
 </MainLayout>

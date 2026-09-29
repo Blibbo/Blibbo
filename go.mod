@@ -3,7 +3,7 @@ module blibbo
 go 1.25.0
 
 require (
-	github.com/wailsapp/wails/v3 v3.0.0-beta.11.0.20260821044253-44df631f198a
+	github.com/wailsapp/wails/v3 v3.0.0-beta.16
 	golang.org/x/sys v0.47.0
 )
 

@@ -220,7 +220,7 @@ onMount(()=>{
   class="
     flex justify-between items-center rounded-sm
     {rest.class ?? ''}
-    {focused && !readOnly ? 'outline-2 outline-accent-readable-on-page' : ''}
+    {focused && !readOnly ? 'outline-2 outline-primary-readable-on-surface' : ''}
   "
   onpointerdown={handleParentPointerDown}
 >
@@ -242,14 +242,14 @@ onMount(()=>{
 
   {#if !noButtons}
     <div class="
-      flex items-center justify-center flex-col text-accent-readable-on-page sm:flex-row *:sm:p-1 sm:mr-1 *:rounded-sm
+      flex items-center justify-center flex-col text-primary-readable-on-surface sm:flex-row *:sm:p-1 sm:mr-1 *:rounded-sm
 
       {(!focused && hideButtonsOnBlur)? 'opacity-0 pointer-events-none w-0' : ''}
     ">
       {#if !readOnly}
         <button
           onclick={handleKeyboardButtonClick}
-          class="preset-interactive-accent cursor-pointer {keyboardShown ? 'preset-accent-unlike-page' : ''}"
+          class="clickable-primary {keyboardShown ? 'preset-primary-unlike-surface' : ''}"
           tabindex={ hideButtonsOnBlur ? -1 : undefined}
         >
           <Keyboard/>
@@ -257,7 +257,7 @@ onMount(()=>{
       {/if}
       <button
         onclick={handleMenuClick}
-        class="preset-interactive-accent cursor-pointer {menuShown ? 'preset-accent-unlike-page' : ''}"
+        class="clickable-primary {menuShown ? 'preset-primary-unlike-surface' : ''}"
         tabindex={ hideButtonsOnBlur ? -1 : undefined}
       >
         <Hamburger/>
@@ -291,18 +291,18 @@ math-field::part(menu-toggle) {
 /* math-field::part(virtual-keyboard-toggle), */
 /* The menu toggle button */
 /* math-field::part(menu-toggle) {
-  color: var(--accent);
+  color: var(--primary);
 } */
 
 /* math-field::part(virtual-keyboard-toggle):hover,
 math-field::part(menu-toggle):hover {
-  background-color: var(--accent);
-  color: var(--on-accent);
+  background-color: var(--primary);
+  color: var(--on-primary);
 } */
 
 /* The math formula */
 math-field::part(content) {
-  color: var(--on-page);
+  color: var(--on-surface);
   transition-property: color;
   transition-duration: var(--theme-switch-duration);
 }
@@ -319,7 +319,7 @@ math-field::part(container) {
 
 /* The element containing the placeholder attribute when the mathfield is empty */
 math-field::part(placeholder) {
-  color: var(--accent-readable-on-page);
+  color: var(--primary-readable-on-surface);
 }
 
 /* The prompts (placeholder{}) inside the mathfield */
@@ -329,19 +329,19 @@ math-field::part(placeholder) {
 math-field{
 
   /* Primary accent color, used for example keyboard toggle and menu glyphs and in the virtual keyboard */
-  --primary: var(--accent);
+  --primary: var(--primary);
   
   /* Color of the insertion point */
-  --caret-color: var(--accent-readable-on-page);
+  --caret-color: var(--primary-readable-on-surface);
   
   /* Color of the content when selected */
-  --selection-color: var(--on-accent-unlike-page);
+  --selection-color: var(--on-primary-unlike-surface);
   
   /* Background color of the selection */
-  --selection-background-color: var(--accent-unlike-page);
+  --selection-background-color: var(--primary-unlike-surface);
   
   /* Background color of items that contain the caret */
-  --contains-highlight-background-color: var(--accent-unlike-page);
+  --contains-highlight-background-color: var(--primary-unlike-surface);
   
   /* of the placeholder symbol */
   /* --placeholder-color	Color */
@@ -350,7 +350,7 @@ math-field{
   /* --placeholder-opacity	Opacity */
   
   /* Color of a smart fence (default is current color) */
-  --smart-fence-color: var(--on-page);
+  --smart-fence-color: var(--on-surface);
   
   /* Opacity of a smart fence (default is 50%) */
   --smart-fence-opacity: 1;
