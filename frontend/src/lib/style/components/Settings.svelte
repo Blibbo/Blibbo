@@ -1,11 +1,15 @@
 <script lang="ts">
 import { Dialog } from "$lib/components/dialog";
-import { ColorPicker } from "../../components/color-picker";
-import { ACCENT, BLUE_ACCENT, GREEN_ACCENT, JENNI_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT } from "../config";
+import Select from "$lib/components/Select.svelte";
+import typia from "typia";
 import { getStyleContext } from "../main.svelte";
 import NextTheme from "./NextTheme.svelte";
+import { type StyleRuntime } from "../mutation";
+import AccentEditor from "./AccentEditor.svelte";
 
 const manager = getStyleContext();
+
+let preferences = typia.misc.literals<StyleRuntime["preference"]>();
 
 </script>
 
@@ -14,20 +18,23 @@ const manager = getStyleContext();
   <Dialog.Content>
     <Dialog.Title class="preset-title">Settings</Dialog.Title>
 
-    <div>
-      <NextTheme class="clickable-next-theme p-2 rounded-lg">
-        <p>Next theme</p>
-      </NextTheme>
-    </div>
+    <Select lazyMount unmountOnExit noClear
+      label="Theme preference"
+      onValueChange={v => 
+        manager.preference = v.value[0] as StyleRuntime["preference"]
+      }
+      value={[manager.preference]}
+      items={preferences}
+    />
 
-    {#if manager.runtime.accent.kind === "static"}
-      <ColorPicker type="any" bind:value={manager.runtime.accent.value}>
-        <ColorPicker.Trigger>Accent Color</ColorPicker.Trigger>
-        <ColorPicker.Content swatches={[ACCENT, JENNI_ACCENT, BLUE_ACCENT, GREEN_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT]}/>
-      </ColorPicker>
-    {/if}
+    <NextTheme class="clickable-next-theme p-2 rounded-lg">
+      <p>Next theme</p>
+    </NextTheme>
+
+    <AccentEditor bind:accent={manager.runtime.accent}/>
 
     <button class="clickable-fade text-primary-readable-on-surface" onclick={()=>manager.reset()}>Reset style</button>
+    
   </Dialog.Content>
 </Dialog>
 

@@ -9,7 +9,7 @@ import { getSystemTheme } from "../prepaint/shared";
 import { assertNonEmpty } from "../types";
 import { isLight } from "./color";
 import type { UUID } from "./main.svelte";
-import type { StyleRuntimeReadonly } from "./mutation";
+import type { StyleRuntime, StyleRuntimeReadonly } from "./mutation";
 import type { SystemTheme } from "./system-theme.svelte";
 import { type Component } from "svelte";
 
@@ -19,8 +19,8 @@ export type SelectionProperty = "selected" | "selectedDark" | "selectedLight";
 
 export type StyleRuntimeInfo = Readonly<{
   selectionProperty: SelectionProperty;
-  selectedTheme: StyleRuntimeReadonly["themes"][number];
-  nextTheme: StyleRuntimeReadonly["themes"][number];
+  selectedTheme: StyleRuntime["themes"][number];
+  nextTheme: StyleRuntime["themes"][number];
   nextThemeIcon: Component;
 }>;
 
@@ -34,7 +34,7 @@ const SPECIAL_TAG_NAMES = [
 ] as const;
 
 export function computeRuntimeInfo(
-  runtime: StyleRuntimeReadonly,
+  runtime: StyleRuntime,
   systemTheme: SystemTheme,
 ): StyleRuntimeInfo {
 
@@ -83,10 +83,10 @@ function findThemeIndex(
 
 export function getValidThemes(
   preference: StyleRuntimeReadonly["preference"],
-  themes: StyleRuntimeReadonly["themes"],
+  themes: StyleRuntime["themes"],
   tagRotation: StyleRuntimeReadonly["tagRotation"],
   systemPreference?: SystemTheme,
-): StyleRuntimeReadonly["themes"] {
+): StyleRuntime["themes"] {
   const valid = themes.filter(theme => {
     if(preference === "custom"){
       if(tagRotation?.size)

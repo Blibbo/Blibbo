@@ -9,9 +9,10 @@ type Props = Omit<Select.RootProps<T>, "collection" | "children"> & {
   items: T[];
   groupBy?: ((item: T) => string) | undefined;
   label: string | Snippet;
+  noClear?: boolean | undefined;
   placeholder?: string | undefined;
   labelClass?: string | undefined;
-  triggerClass?: string | undefined;
+  controlClass?: string | undefined;
   contentClass?: string | undefined;
 };
 
@@ -20,8 +21,9 @@ let {
   groupBy,
   placeholder,
   label,
+  noClear,
   labelClass,
-  triggerClass,
+  controlClass,
   contentClass,
   ...rest
 }: Props = $props();
@@ -33,7 +35,7 @@ const groups = $derived(collection.group());
 
 {#snippet option(item: T)}
   <Select.Item class="preset-menu-checkable-item" {item}>
-    <Select.ItemText>{collection.stringifyItem(item)}</Select.ItemText>
+    <Select.ItemText class="capitalize">{collection.stringifyItem(item)}</Select.ItemText>
     <Select.ItemIndicator hidden={false}><CheckIcon/></Select.ItemIndicator>
   </Select.Item>
 {/snippet}
@@ -43,14 +45,16 @@ const groups = $derived(collection.group());
     {#if typeof label === "string"}{label}{:else}{@render label()}{/if}
   </Select.Label>
 
-  <Select.Control class="preset-input relative">
-    <Select.Trigger class={triggerClass}>
-      <Select.ValueText {placeholder} />
+  <Select.Control class={controlClass}>
+    <Select.Trigger>
+      <Select.ValueText {placeholder}/>
     </Select.Trigger>
     <div class="pointer-events-none absolute right-1 top-0 h-full flex items-center">
-      <Select.ClearTrigger class="clickable-fade">
-        <XIcon/>
-      </Select.ClearTrigger>
+      {#if !noClear}
+        <Select.ClearTrigger class="clickable-fade">
+          <XIcon/>
+        </Select.ClearTrigger>
+      {/if}
       <Select.Indicator>
         <ChevronUpDown/>
       </Select.Indicator>
@@ -87,12 +91,20 @@ const groups = $derived(collection.group());
 
 :global{
   @layer components {
-    [data-scope="select"][data-part="trigger"] {
-      @apply flex-1 text-left w-full;
+    [data-scope="select"][data-part="label"] {
+      @apply preset-label;
+    }
+
+    [data-scope="select"][data-part="control"] {
+      @apply relative text-primary-readable-on-surface;
+
+      @variant *:data-[part=trigger] {
+        @apply preset-input text-left w-full min-h-lh block capitalize not-data-placeholder-shown:text-on-surface;
+      }
     }
 
     [data-scope="select"][data-part="content"] {
-      @apply preset-menu;
+      @apply preset-menu z-50;
     }
   }
 }

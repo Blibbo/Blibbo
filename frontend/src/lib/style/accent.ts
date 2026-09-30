@@ -17,7 +17,7 @@ type DynamicAccentFor<
   Value extends DynamicAccentValueFor<Name> = DynamicAccentValueFor<Name>,
 > = {
   readonly kind: "dynamic";
-  readonly value: Value;
+  value: Value;
 };
 
 type DynamicAccent<
@@ -33,7 +33,7 @@ type StaticAccent<
   Value extends StaticAccentValue = ValidColor
 > = {
   readonly kind: "static";
-  readonly value: Value;
+  value: Value;
 };
 
 export type AccentFor<

@@ -26,8 +26,12 @@
   @apply rounded-2xl p-4;
 }
 
+@utility preset-label {
+  @apply text-sm;
+}
+
 @utility preset-input {
-  @apply text-primary-readable-on-surface preset-outline-primary rounded-md p-1;
+  @apply preset-outline-primary rounded-md p-1;
 }
 
 @utility preset-windicator {
@@ -37,7 +41,7 @@
 /* menu */
 
 @utility preset-menu {
-  @apply preset-accent preset-surface rounded-md p-0.75 preset-outline-primary;
+  @apply preset-page preset-surface rounded-md p-0.75 preset-outline-primary max-h-[50dvh] overflow-scroll;
 }
 
 @utility preset-menu-item {

@@ -79,7 +79,10 @@ export class StyleManager {
     this.defaultStyle = defaultStyle;
 
     this.#runtime = $state(loadStyle(persistKey, defaultStyle));
-    this.computed = $derived(computeRuntimeInfo(this.#runtime, systemTheme.value));
+    this.computed = $derived.by(()=>{
+      const reactiveProxy = $state(computeRuntimeInfo(this.#runtime, systemTheme.value));
+      return reactiveProxy
+    });
 
     this.active = $derived.by(()=>{
       const reactiveProxy = $state(computeIndependentVariables(this.#runtime, this.computed));
@@ -128,8 +131,12 @@ export class StyleManager {
     this.#runtime = hydratePreset(presetStyle);
   }
 
-  setPreference(preference: StyleRuntime["preference"]): void {
+  set preference(preference: StyleRuntime["preference"]) {
     setPreference(preference, this.#runtime, systemTheme.value, this.computed);
+  }
+
+  get preference() {
+    return this.#runtime.preference;
   }
 
   runEffects(
@@ -146,6 +153,7 @@ export class StyleManager {
   nextTheme(): void {
     nextTheme(this.#runtime, this.computed);
   }
+
 }
 
 export const [getStyleContext, setStyleContext] = createContext<StyleManager>();
