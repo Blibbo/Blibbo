@@ -18,7 +18,7 @@
   }
 
   const classDisabled = "transition-colors duration-1000 bg-on-surface";
-  const classEnabled  = "transition-colors duration-1000 bg-primary-unlike-surface";
+  const classEnabled  = "transition-colors duration-1000 bg-secondary-unlike-surface";
 
   
   // const classDisabled = "transition-colors duration-1000 bg-red-500";

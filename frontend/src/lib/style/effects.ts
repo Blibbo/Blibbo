@@ -1,5 +1,5 @@
 import { hasKotlinInterface } from "../platform";
-import { setCSSGlobal, setPrepaintCache, STYLE_ROOT } from "../prepaint/shared";
+import { setCSSGlobal, setPrepaintCache, STYLE_ROOT } from "./prepaint/shared";
 import { colorEquals, isLight, type OpaqueColor } from "./color";
 import { findTheme, type StyleRuntimeInfo } from "./derived";
 import { persistStyle } from "./persist";
@@ -33,8 +33,8 @@ export function applyStyle(
     }
   }
 
-  const opaqueAccent = manager.variables.AccentOpaque;
-  if(!variablesOld || !colorEquals(opaqueAccent, variablesOld.AccentOpaque)){
+  const opaqueAccent = manager.variables.Accent;
+  if(!variablesOld || !colorEquals(opaqueAccent, variablesOld.Accent)){
     setMetaThemeColor(opaqueAccent);
     updateAndroidSystemIcons(isLight(opaqueAccent));
   }

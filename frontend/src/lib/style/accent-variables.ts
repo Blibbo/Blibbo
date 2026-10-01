@@ -11,8 +11,8 @@ export type PrimitiveAccents = {
 export type AccentName = keyof PrimitiveAccents;
 
 type ResolvedAccentModifiers = {
-  "": ValidColor
-  Opaque: OpaqueColor;
+  "": OpaqueColor
+  Transparent: ValidColor;
 };
 
 type ResolvedAccents<
@@ -88,6 +88,7 @@ function computeAllAccentVariables(deps: AccentDependencies): AccentVariables {
     ...deps,
     ...accentVariables,
   };
+
   const accent2Variables = computeAccent2Variables(accent2Deps);
 
   return {
@@ -120,11 +121,11 @@ function computeAccentVariablesFor<Name extends AccentName>(
   });
 
   const readableOnPage = computeColor1OnColor2(opaque, deps.Page, {
-    type: "readable"
+    type: "readable",
   });
 
   const visibleOnPage = computeColor1OnColor2(opaque, deps.Page, {
-    type: "visible"
+    type: "visible",
   });
 
   const onAccent = raw.kind === "dynamic"
@@ -171,10 +172,10 @@ function computeAccentVariablesFor<Name extends AccentName>(
   const crossContrasts = computeContrasts(deps.OnLight, deps.OnDark, crossPage, true);
 
   return {
-    [accentName]: validColor,
+    [accentName]: opaque,
     [`On${accentName}`]: onAccent,
     [`Off${accentName}`]: offAccent,
-    [`${accentName}Opaque`]: opaque,
+    [`${accentName}Transparent`]: validColor,
     ...variants,
     ...variantContrasts,
     ...crossPage,
@@ -188,7 +189,7 @@ function computeAccentVariables(deps: AccentDependencies): AccentVariables<"Acce
 
 function computeAccent2Variables(deps: Accent2Dependencies): AccentVariables<"Accent2"> {
   const accentCommons = computeAccentVariablesFor("Accent2", deps);
-
+  
   const crossDependencies = {
     ...deps,
     ...accentCommons,
@@ -199,8 +200,8 @@ function computeAccent2Variables(deps: Accent2Dependencies): AccentVariables<"Ac
   for (const [name1, name2] of [["Accent", "Accent2"], ["Accent2", "Accent"]] as const) {
     crossed[`${name1}Unlike${name2}`] =
       computeColor1OnColor2(
-        crossDependencies[`${name1}Opaque`],
-        crossDependencies[`${name2}Opaque`],
+        crossDependencies[`${name1}`],
+        crossDependencies[`${name2}`],
         {
           type: "unlike",
           contrast: crossDependencies[`On${name2}`],
@@ -208,14 +209,14 @@ function computeAccent2Variables(deps: Accent2Dependencies): AccentVariables<"Ac
       );
     crossed[`${name1}ReadableOn${name2}`] =
       computeColor1OnColor2(
-        crossDependencies[`${name1}Opaque`],
-        crossDependencies[`${name2}Opaque`],
+        crossDependencies[`${name1}`],
+        crossDependencies[`${name2}`],
         { type: "readable" }
       );
     crossed[`${name1}VisibleOn${name2}`] =
       computeColor1OnColor2(
-        crossDependencies[`${name1}Opaque`],
-        crossDependencies[`${name2}Opaque`],
+        crossDependencies[`${name1}`],
+        crossDependencies[`${name2}`],
         { type: "visible" }
       );
   }
@@ -233,10 +234,6 @@ function computeAccent2Variables(deps: Accent2Dependencies): AccentVariables<"Ac
 const TOGGLE_CONTRAST_PREFIX_MAP = [
   ["OnLight", "OnDark"],
   ["OnDark", "OnLight"],
-  ["AccentOpaque", "OnAccent"],
-  ["Accent2Opaque", "OnAccent2"],
-  ["OnAccent", "AccentOpaque"],
-  ["OnAccent2", "Accent2Opaque"],
   ["Off", "On"],
   ["On", ""],
   ["", "On"],
@@ -251,10 +248,6 @@ const NON_CONTRASTING_PREFIX_MAP = [
   ["OnLight", "OnLight"],
   ["OnDark", "OnDark"],
   ["On", "On"],
-  ["OffAccent", "AccentOpaque"],
-  ["OffAccent2", "Accent2Opaque"],
-  ["AccentOpaque", "OffAccent"],
-  ["Accent2Opaque", "OffAccent2"],
   ["Off", ""],
   ["", "Off"],
 ] as const;

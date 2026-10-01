@@ -25,14 +25,14 @@ let dynamicAccents2 = typia.misc.literals<DynamicAccent2Value>();
 
 </script>
 
-<div class="sm:flex sm:gap-x-2">
+<div class="flex gap-x-2 justify-between">
   {#if accent.kind === "static"}
     <ColorPicker type="any" bind:value={accent.value}>
-      <ColorPicker.Trigger>Accent Color</ColorPicker.Trigger>
+      <ColorPicker.Trigger class="capitalize">{kind ?? "Accent"}</ColorPicker.Trigger>
       <ColorPicker.Content swatches={[ACCENT, JENNI_ACCENT, BLUE_ACCENT, GREEN_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT]}/>
     </ColorPicker>
   {:else}
-    <Select lazyMount unmountOnExit label="Dynamic accent"
+    <Select lazyMount unmountOnExit noClear label="Dynamic accent" labelClass="hidden"
       items={kind === "accent2" ? dynamicAccents2 : dynamicAccents}
       onValueChange={v=>{
         accent = dynamicAccent(v.value[0] as DynamicAccentValue);
@@ -41,7 +41,7 @@ let dynamicAccents2 = typia.misc.literals<DynamicAccent2Value>();
     />
   {/if}
 
-  <Switch checked={accent.kind === "dynamic"}
+  <Switch class="flex-row-reverse" checked={accent.kind === "dynamic"}
     onCheckedChange={details => {
       const dynamic = details.checked;
 

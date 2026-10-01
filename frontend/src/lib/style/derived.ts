@@ -5,7 +5,7 @@ import Cloudy from 'virtual:icons/carbon/mostly-cloudy';
 import Rainy from 'virtual:icons/material-symbols/rainy-outline';
 import Stormy from 'virtual:icons/famicons/thunderstorm-outline';
 import Snowy from 'virtual:icons/material-symbols/cloudy-snowing';
-import { getSystemTheme } from "../prepaint/shared";
+import { getSystemTheme } from "./prepaint/shared";
 import { assertNonEmpty } from "../types";
 import { isLight } from "./color";
 import type { UUID } from "./main.svelte";

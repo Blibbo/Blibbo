@@ -3,7 +3,7 @@ import type { StyleConfig } from "../config";
 import { type Snippet } from "svelte";
 import { getStyleContext, setStyleContext, StyleManager } from "../main.svelte";
 import type { HTMLAttributes } from "svelte/elements";
-import { STYLE_ROOT } from "../../prepaint/shared";
+import { STYLE_ROOT } from "../prepaint/shared";
 import type { StyleRuntimeInfo } from "../derived";
 import type { ColorVariables } from "../variables";
 

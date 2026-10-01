@@ -2,15 +2,15 @@
 /* primitive */
 
 @utility preset-surface {
-  @apply bg-surface-opaque text-on-surface preset-theme-transition;
+  @apply bg-surface text-on-surface preset-theme-transition;
 }
 
 @utility preset-primary {
-  @apply bg-primary-opaque text-on-primary preset-theme-transition;
+  @apply bg-primary text-on-primary preset-theme-transition;
 }
 
 @utility preset-secondary {
-  @apply bg-secondary-opaque text-on-secondary preset-theme-transition;
+  @apply bg-secondary text-on-secondary preset-theme-transition;
 }
 
 @utility preset-next-theme {
@@ -32,11 +32,11 @@
 }
 
 @utility preset-on-primary {
-  @apply bg-on-primary text-primary-opaque preset-theme-transition;
+  @apply bg-on-primary text-primary preset-theme-transition;
 }
 
 @utility preset-on-secondary {
-  @apply bg-on-secondary text-secondary-opaque preset-theme-transition;
+  @apply bg-on-secondary text-secondary preset-theme-transition;
 }
 
 /* complementary */

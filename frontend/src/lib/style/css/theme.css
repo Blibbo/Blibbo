@@ -27,7 +27,7 @@
   --color-on-surface: var(--on-surface);
   --color-off-surface: var(--off-surface);
 
-  --color-surface-opaque: var(--surface-opaque);
+  --color-surface-transparent: var(--surface-transparent);
 
   --color-surface-complementary: var(--surface-complementary);
   --color-on-surface-complementary: var(--on-surface-complementary);
@@ -41,7 +41,7 @@
   --color-on-primary: var(--on-primary);
   --color-off-primary: var(--off-primary);
 
-  --color-primary-opaque: var(--primary-opaque);
+  --color-primary-transparent: var(--primary-transparent);
 
   --color-primary-complementary: var(--primary-complementary);
   --color-on-primary-complementary: var(--on-primary-complementary);
@@ -64,7 +64,7 @@
   --color-on-secondary: var(--on-secondary);
   --color-off-secondary: var(--off-secondary);
 
-  --color-secondary-opaque: var(--secondary-opaque);
+  --color-secondary-transparent: var(--secondary-transparent);
 
   --color-secondary-complementary: var(--secondary-complementary);
   --color-on-secondary-complementary: var(--on-secondary-complementary);

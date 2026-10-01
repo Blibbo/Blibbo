@@ -9,7 +9,7 @@
   --on-surface: var(--on-page);
   --off-surface: var(--off-page);
 
-  --surface-opaque: var(--page);
+  --surface-transparent: var(--page);
 
   --surface-complementary: var(--page-complementary);
   --on-surface-complementary: var(--on-page-complementary);
@@ -23,7 +23,7 @@
   --on-primary: var(--on-accent);
   --off-primary: var(--off-accent);
 
-  --primary-opaque: var(--accent-opaque);
+  --primary-transparent: var(--accent-transparent);
 
   --primary-complementary: var(--accent-complementary);
   --on-primary-complementary: var(--on-accent-complementary);
@@ -46,7 +46,7 @@
   --on-secondary: var(--on-accent2);
   --off-secondary: var(--off-accent2);
 
-  --secondary-opaque: var(--accent2-opaque);
+  --secondary-transparent: var(--accent2-transparent);
 
   --secondary-complementary: var(--accent2-complementary);
   --on-secondary-complementary: var(--on-accent2-complementary);
@@ -72,7 +72,7 @@
   --on-surface: var(--on-accent);
   --off-surface: var(--off-accent);
 
-  --surface-opaque: var(--accent-opaque);
+  --surface-transparent: var(--accent-transparent);
 
   --surface-complementary: var(--accent-complementary);
   --on-surface-complementary: var(--on-accent-complementary);
@@ -86,7 +86,7 @@
   --on-primary: var(--on-page);
   --off-primary: var(--off-page);
 
-  --primary-opaque: var(--page);
+  --primary-transparent: var(--page);
 
   --primary-complementary: var(--page-complementary);
   --on-primary-complementary: var(--on-page-complementary);
@@ -109,7 +109,7 @@
   --on-secondary: var(--on-accent2);
   --off-secondary: var(--off-accent2);
 
-  --secondary-opaque: var(--accent2-opaque);
+  --secondary-transparent: var(--accent2-transparent);
 
   --secondary-complementary: var(--accent2-complementary);
   --on-secondary-complementary: var(--on-accent2-complementary);
@@ -135,7 +135,7 @@
   --on-surface: var(--on-accent2);
   --off-surface: var(--off-accent2);
 
-  --surface-opaque: var(--accent2-opaque);
+  --surface-transparent: var(--accent2-transparent);
 
   --surface-complementary: var(--accent2-complementary);
   --on-surface-complementary: var(--on-accent2-complementary);
@@ -149,7 +149,7 @@
   --on-primary: var(--on-page);
   --off-primary: var(--off-page);
 
-  --primary-opaque: var(--page);
+  --primary-transparent: var(--page);
 
   --primary-complementary: var(--page-complementary);
   --on-primary-complementary: var(--on-page-complementary);
@@ -172,7 +172,7 @@
   --on-secondary: var(--on-accent);
   --off-secondary: var(--off-accent);
 
-  --secondary-opaque: var(--accent-opaque);
+  --secondary-transparent: var(--accent-transparent);
 
   --secondary-complementary: var(--accent-complementary);
   --on-secondary-complementary: var(--on-accent-complementary);
@@ -203,7 +203,7 @@
   --on-surface: var(--page);
   --off-surface: var(--on-page);
 
-  --surface-opaque: var(--on-page);
+  --surface-transparent: var(--on-page);
 
   --surface-complementary: var(--on-page-complementary); /* inaccurate */
   --on-surface-complementary: var(--page-complementary);
@@ -214,10 +214,10 @@
   --off-surface-inverted: var(--on-page-inverted);
 
   --primary: var(--on-accent);
-  --on-primary: var(--accent-opaque);
+  --on-primary: var(--accent-transparent);
   --off-primary: var(--on-accent);
 
-  --primary-opaque: var(--on-accent);
+  --primary-transparent: var(--on-accent);
 
   --primary-complementary: var(--on-accent-complementary); /* inaccurate */
   --on-primary-complementary: var(--accent-complementary);
@@ -237,10 +237,10 @@
   --on-primary-visible-on-surface: var(--accent-visible-on-page);
 
   --secondary: var(--on-accent2);
-  --on-secondary: var(--accent2-opaque);
+  --on-secondary: var(--accent2);
   --off-secondary: var(--on-accent2);
 
-  --secondary-opaque: var(--on-accent2);
+  --secondary-transparent: var(--on-accent2);
 
   --secondary-complementary: var(--on-accent2-complementary); /* inaccurate */
   --on-secondary-complementary: var(--accent2-complementary);
@@ -263,10 +263,10 @@
 @utility preset-on-accent {
   @apply preset-surface-context;
   --surface: var(--on-accent);
-  --on-surface: var(--accent-opaque);
+  --on-surface: var(--accent);
   --off-surface: var(--on-accent);
 
-  --surface-opaque: var(--on-accent);
+  --surface-transparent: var(--on-accent);
 
   --surface-complementary: var(--on-accent-complementary); /* inaccurate */
   --on-surface-complementary: var(--accent-complementary);
@@ -280,7 +280,7 @@
   --on-primary: var(--page);
   --off-primary: var(--on-page);
 
-  --primary-opaque: var(--on-page);
+  --primary-transparent: var(--on-page);
 
   --primary-complementary: var(--on-page-complementary); /* inaccurate */
   --on-primary-complementary: var(--page-complementary);
@@ -300,10 +300,10 @@
   --on-primary-visible-on-surface: var(--page-visible-on-accent);
 
   --secondary: var(--on-accent2);
-  --on-secondary: var(--accent2-opaque);
+  --on-secondary: var(--accent2);
   --off-secondary: var(--on-accent2);
 
-  --secondary-opaque: var(--on-accent2);
+  --secondary-transparent: var(--on-accent2);
 
   --secondary-complementary: var(--on-accent2-complementary); /* inaccurate */
   --on-secondary-complementary: var(--accent2-complementary);
@@ -326,10 +326,10 @@
 @utility preset-on-accent2 {
   @apply preset-surface-context;
   --surface: var(--on-accent2);
-  --on-surface: var(--accent2-opaque);
+  --on-surface: var(--accent2);
   --off-surface: var(--on-accent2);
 
-  --surface-opaque: var(--on-accent2);
+  --surface-transparent: var(--on-accent2);
 
   --surface-complementary: var(--on-accent2-complementary); /* inaccurate */
   --on-surface-complementary: var(--accent2-complementary);
@@ -343,7 +343,7 @@
   --on-primary: var(--page);
   --off-primary: var(--on-page);
 
-  --primary-opaque: var(--on-page);
+  --primary-transparent: var(--on-page);
 
   --primary-complementary: var(--on-page-complementary); /* inaccurate */
   --on-primary-complementary: var(--page-complementary);
@@ -363,10 +363,10 @@
   --on-primary-visible-on-surface: var(--page-visible-on-accent2);
 
   --secondary: var(--on-accent);
-  --on-secondary: var(--accent-opaque);
+  --on-secondary: var(--accent);
   --off-secondary: var(--on-accent);
 
-  --secondary-opaque: var(--on-accent);
+  --secondary-transparent: var(--on-accent);
 
   --secondary-complementary: var(--on-accent-complementary); /* inaccurate */
   --on-secondary-complementary: var(--accent-complementary);
@@ -397,7 +397,7 @@
   --on-surface: var(--on-page-complementary);
   --off-surface: var(--off-page-complementary);
 
-  --surface-opaque: var(--page-complementary);
+  --surface-transparent: var(--page-complementary);
 
   --surface-complementary: var(--page);
   --on-surface-complementary: var(--on-page);
@@ -411,9 +411,9 @@
   --on-primary: var(--on-accent-complementary);
   --off-primary: var(--off-accent-complementary);
 
-  --primary-opaque: var(--accent-complementary);
+  --primary-transparent: var(--accent-complementary);
 
-  --primary-complementary: var(--accent-opaque);
+  --primary-complementary: var(--accent);
   --on-primary-complementary: var(--on-accent);
   --off-primary-complementary: var(--off-accent);
 
@@ -434,9 +434,9 @@
   --on-secondary: var(--on-accent2-complementary);
   --off-secondary: var(--off-accent2-complementary);
 
-  --secondary-opaque: var(--accent2-complementary);
+  --secondary-transparent: var(--accent2-complementary);
 
-  --secondary-complementary: var(--accent2-opaque);
+  --secondary-complementary: var(--accent2);
   --on-secondary-complementary: var(--on-accent2);
   --off-secondary-complementary: var(--off-accent2);
 
@@ -460,9 +460,9 @@
   --on-surface: var(--on-accent-complementary);
   --off-surface: var(--off-accent-complementary);
 
-  --surface-opaque: var(--accent-complementary);
+  --surface-transparent: var(--accent-complementary);
 
-  --surface-complementary: var(--accent-opaque);
+  --surface-complementary: var(--accent);
   --on-surface-complementary: var(--on-accent);
   --off-surface-complementary: var(--off-accent);
 
@@ -474,7 +474,7 @@
   --on-primary: var(--on-page-complementary);
   --off-primary: var(--off-page-complementary);
 
-  --primary-opaque: var(--page-complementary);
+  --primary-transparent: var(--page-complementary);
 
   --primary-complementary: var(--page);
   --on-primary-complementary: var(--on-page);
@@ -497,9 +497,9 @@
   --on-secondary: var(--on-accent2-complementary);
   --off-secondary: var(--off-accent2-complementary);
 
-  --secondary-opaque: var(--accent2-complementary);
+  --secondary-transparent: var(--accent2-complementary);
 
-  --secondary-complementary: var(--accent2-opaque);
+  --secondary-complementary: var(--accent2);
   --on-secondary-complementary: var(--on-accent2);
   --off-secondary-complementary: var(--off-accent2);
 
@@ -523,9 +523,9 @@
   --on-surface: var(--on-accent2-complementary);
   --off-surface: var(--off-accent2-complementary);
 
-  --surface-opaque: var(--accent2-complementary);
+  --surface-transparent: var(--accent2-complementary);
 
-  --surface-complementary: var(--accent2-opaque);
+  --surface-complementary: var(--accent2);
   --on-surface-complementary: var(--on-accent2);
   --off-surface-complementary: var(--off-accent2);
 
@@ -537,7 +537,7 @@
   --on-primary: var(--on-page-complementary);
   --off-primary: var(--off-page-complementary);
 
-  --primary-opaque: var(--page-complementary);
+  --primary-transparent: var(--page-complementary);
 
   --primary-complementary: var(--page);
   --on-primary-complementary: var(--on-page);
@@ -560,9 +560,9 @@
   --on-secondary: var(--on-accent-complementary);
   --off-secondary: var(--off-accent-complementary);
 
-  --secondary-opaque: var(--accent-complementary);
+  --secondary-transparent: var(--accent-complementary);
 
-  --secondary-complementary: var(--accent-opaque);
+  --secondary-complementary: var(--accent);
   --on-secondary-complementary: var(--on-accent);
   --off-secondary-complementary: var(--off-accent);
 
@@ -590,7 +590,7 @@
   --on-surface: var(--on-page-inverted);
   --off-surface: var(--off-page-inverted);
 
-  --surface-opaque: var(--page-inverted);
+  --surface-transparent: var(--page-inverted);
 
   --surface-complementary: var(--page-complementary); /* inaccurate */
   --on-surface-complementary: var(--on-page-complementary);
@@ -604,13 +604,13 @@
   --on-primary: var(--on-accent-inverted);
   --off-primary: var(--off-accent-inverted);
 
-  --primary-opaque: var(--accent-inverted);
+  --primary-transparent: var(--accent-inverted);
 
   --primary-complementary: var(--accent-complementary); /* inaccurate */
   --on-primary-complementary: var(--on-accent-complementary);
   --off-primary-complementary: var(--off-accent-complementary);
 
-  --primary-inverted: var(--accent-opaque);
+  --primary-inverted: var(--accent);
   --on-primary-inverted: var(--on-accent);
   --off-primary-inverted: var(--off-accent);
 
@@ -627,13 +627,13 @@
   --on-secondary: var(--on-accent2-inverted);
   --off-secondary: var(--off-accent2-inverted);
 
-  --secondary-opaque: var(--accent2-inverted);
+  --secondary-transparent: var(--accent2-inverted);
 
   --secondary-complementary: var(--accent2-complementary); /* inaccurate */
   --on-secondary-complementary: var(--on-accent2-complementary);
   --off-secondary-complementary: var(--off-accent2-complementary);
 
-  --secondary-inverted: var(--accent2-opaque);
+  --secondary-inverted: var(--accent2);
   --on-secondary-inverted: var(--on-accent2);
   --off-secondary-inverted: var(--off-accent2);
 
@@ -653,13 +653,13 @@
   --on-surface: var(--on-accent-inverted);
   --off-surface: var(--off-accent-inverted);
 
-  --surface-opaque: var(--accent-inverted);
+  --surface-transparent: var(--accent-inverted);
 
   --surface-complementary: var(--accent-complementary); /* inaccurate */
   --on-surface-complementary: var(--on-accent-complementary);
   --off-surface-complementary: var(--off-accent-complementary);
 
-  --surface-inverted: var(--accent-opaque);
+  --surface-inverted: var(--accent);
   --on-surface-inverted: var(--on-accent);
   --off-surface-inverted: var(--off-accent);
 
@@ -667,7 +667,7 @@
   --on-primary: var(--on-page-inverted);
   --off-primary: var(--off-page-inverted);
 
-  --primary-opaque: var(--page-inverted);
+  --primary-transparent: var(--page-inverted);
 
   --primary-complementary: var(--page-complementary); /* inaccurate */
   --on-primary-complementary: var(--on-page-complementary);
@@ -690,13 +690,13 @@
   --on-secondary: var(--on-accent2-inverted);
   --off-secondary: var(--off-accent2-inverted);
 
-  --secondary-opaque: var(--accent2-inverted);
+  --secondary-transparent: var(--accent2-inverted);
 
   --secondary-complementary: var(--accent2-complementary); /* inaccurate */
   --on-secondary-complementary: var(--on-accent2-complementary);
   --off-secondary-complementary: var(--off-accent2-complementary);
 
-  --secondary-inverted: var(--accent2-opaque);
+  --secondary-inverted: var(--accent2);
   --on-secondary-inverted: var(--on-accent2);
   --off-secondary-inverted: var(--off-accent2);
 
@@ -716,13 +716,13 @@
   --on-surface: var(--on-accent2-inverted);
   --off-surface: var(--off-accent2-inverted);
 
-  --surface-opaque: var(--accent2-inverted);
+  --surface-transparent: var(--accent2-inverted);
 
   --surface-complementary: var(--accent2-complementary); /* inaccurate */
   --on-surface-complementary: var(--on-accent2-complementary);
   --off-surface-complementary: var(--off-accent2-complementary);
 
-  --surface-inverted: var(--accent2-opaque);
+  --surface-inverted: var(--accent2);
   --on-surface-inverted: var(--on-accent2);
   --off-surface-inverted: var(--off-accent2);
 
@@ -730,7 +730,7 @@
   --on-primary: var(--on-page-inverted);
   --off-primary: var(--off-page-inverted);
 
-  --primary-opaque: var(--page-inverted);
+  --primary-transparent: var(--page-inverted);
 
   --primary-complementary: var(--page-complementary); /* inaccurate */
   --on-primary-complementary: var(--on-page-complementary);
@@ -753,13 +753,13 @@
   --on-secondary: var(--on-accent2-inverted);
   --off-secondary: var(--off-accent2-inverted);
 
-  --secondary-opaque: var(--accent2-inverted);
+  --secondary-transparent: var(--accent2-inverted);
 
   --secondary-complementary: var(--accent2-complementary); /* inaccurate */
   --on-secondary-complementary: var(--on-accent2-complementary);
   --off-secondary-complementary: var(--off-accent2-complementary);
 
-  --secondary-inverted: var(--accent2-opaque);
+  --secondary-inverted: var(--accent2);
   --on-secondary-inverted: var(--on-accent2);
   --off-secondary-inverted: var(--off-accent2);
 
@@ -783,7 +783,7 @@
   --on-surface: var(--on-page-readable-on-accent);
   --off-surface: var(--page-readable-on-accent);
 
-  --surface-opaque: var(--page-readable-on-accent);
+  --surface-transparent: var(--page-readable-on-accent);
 
   --surface-complementary: var(--page-complementary); /* inaccurate */
   --on-surface-complementary: var(--on-page-complementary);
@@ -797,7 +797,7 @@
   --on-primary: var(--on-accent-readable-on-page);
   --off-primary: var(--accent-readable-on-page);
 
-  --primary-opaque: var(--accent-opaque);
+  --primary-transparent: var(--accent-transparent);
 
   --primary-complementary: var(--accent-complementary);  /* inaccurate */
   --on-primary-complementary: var(--on-accent-complementary);
@@ -820,7 +820,7 @@
   --on-secondary: var(--on-accent2);
   --off-secondary: var(--off-accent2);
 
-  --secondary-opaque: var(--accent2-opaque);
+  --secondary-transparent: var(--accent2-transparent);
 
   --secondary-complementary: var(--accent2-complementary);
   --on-secondary-complementary: var(--on-accent2-complementary);

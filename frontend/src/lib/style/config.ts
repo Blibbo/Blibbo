@@ -1,6 +1,6 @@
 import type { ReadonlyDeep } from "type-fest";
 import type { DryStyleTypes, StyleCommons, UUID } from "./main.svelte";
-import { DARK, getSystemTheme, LIGHT, ON_DARK, ON_LIGHT } from "../prepaint/shared";
+import { DARK, getSystemTheme, LIGHT, ON_DARK, ON_LIGHT } from "./prepaint/shared";
 import { mapNonEmpty } from "../types";
 import { opaqueColor, isLight, readableOnLight, readableOnDark } from "./color";
 import type { StyleRuntime } from "./mutation";
@@ -40,6 +40,7 @@ export const BLUE_ACCENT = "#36D";
 export const GREEN_ACCENT = "#61B09C";
 export const ORANGE_ACCENT = "#E8541A";
 export const YELLOW_ACCENT = "#D9ED00";
+export const LIGHT_ORANGE_ACCENT = "#D99A52";
 
 export const STYLE_PRESETS = {
   default: {

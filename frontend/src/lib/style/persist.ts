@@ -1,5 +1,5 @@
 import typia from "typia";
-import { LOCALSTORAGE_PREFIX } from "../prepaint/shared";
+import { LOCALSTORAGE_PREFIX } from "./prepaint/shared";
 import { mapNonEmpty } from "../types";
 import { opaqueColor, readableOnDark, readableOnLight } from "./color";
 import type { DryStyleTypes } from "./main.svelte";

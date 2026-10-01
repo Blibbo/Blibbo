@@ -2,7 +2,7 @@ import fs from 'fs';
 import { rolldown } from 'rolldown';
 
 const bundle = await rolldown({
-	input: 'src/lib/prepaint/prepaint.ts',
+	input: 'src/lib/style/prepaint/prepaint.ts',
 });
 
 const { output } = await bundle.generate({

@@ -1,5 +1,5 @@
 import { type OpaqueColor, type ReadableOnDark, type ReadableOnLight, type ValidColor } from "$lib/style/color";
-import { setCSSGlobal } from "$lib/prepaint/shared";
+import { setCSSGlobal } from "$lib/style/prepaint/shared";
 import { tags } from "typia";
 import { type NonEmptyArray } from "$lib/types";
 import { systemTheme } from "./system-theme.svelte";
@@ -34,7 +34,7 @@ type OverridableByTheme<Types extends StyleTypes> = {
   onLight: Types["readableOnLight"];
   onDark: Types["readableOnDark"];
   accent: Accent<Types["staticAccentValue"]>;
-  accent2?: Accent2<Types["staticAccentValue"]> | undefined;
+  accent2: Accent2<Types["staticAccentValue"]>;
 };
 
 export type StyleCommons<

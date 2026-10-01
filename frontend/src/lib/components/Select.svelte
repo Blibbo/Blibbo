@@ -47,7 +47,7 @@ const groups = $derived(collection.group());
 
   <Select.Control class={controlClass}>
     <Select.Trigger>
-      <Select.ValueText {placeholder}/>
+      <Select.ValueText data-no-clear={noClear} {placeholder}/>
     </Select.Trigger>
     <div class="pointer-events-none absolute right-1 top-0 h-full flex items-center">
       {#if !noClear}
@@ -99,7 +99,11 @@ const groups = $derived(collection.group());
       @apply relative text-primary-readable-on-surface;
 
       @variant *:data-[part=trigger] {
-        @apply preset-input text-left w-full min-h-lh block capitalize not-data-placeholder-shown:text-on-surface;
+        @apply clickable-fade preset-input text-left w-full min-h-lh block capitalize not-data-placeholder-shown:text-on-surface;
+      }
+
+      @variant *:*:data-[part=value-text] {
+        @apply pr-[2.65em] data-no-clear:pr-[1.45em];
       }
     }
 
