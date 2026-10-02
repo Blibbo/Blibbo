@@ -1,7 +1,7 @@
 import type { ReadonlyDeep } from "type-fest";
 import type { RichStyleTypes, StyleCommons, StyleTypes, UUID } from "./main.svelte";
 import type { SystemTheme } from "./system-theme.svelte";
-import { getSelectedProperty, getValidThemes, type StyleRuntimeInfo } from "./derived";
+import { getSelectedProperty, getValidThemes, type SelectionProperty, type StyleRuntimeInfo } from "./derived";
 
 export type StyleRuntime<Types extends StyleTypes = RichStyleTypes> =
   StyleCommons<Types, {
@@ -37,24 +37,45 @@ export function setPreference(
   systemTheme: SystemTheme,
   computed: StyleRuntimeInfo,
 ): void {
-  const valid = getValidThemes(preference, style.themes, style.tagRotation, systemTheme);
-  const oldSelectedId = computed.selectedTheme.id;
   const newTargetProperty = getSelectedProperty(preference, systemTheme);
 
-  const cached = style[newTargetProperty];
-  const isOldThemeStillValid =
-    ()=>valid.some(theme => theme.id === oldSelectedId);
+  const index = [{
+    targetProperty: newTargetProperty,
+    preference,
+  }];
 
-  let newSelected: UUID;
-  if(cached){
-    newSelected = cached;
-  } else if (isOldThemeStillValid()) {
-    newSelected = oldSelectedId;
-  } else {
-    newSelected = valid[0].id;
+  if(preference === "system") {
+    index.push({
+      targetProperty: systemTheme === "dark"
+        ? "selectedLight"
+        : "selectedDark",
+      preference: systemTheme === "dark"
+        ? "light"
+        : "dark",
+    });
+  }
+  
+  for (const i of index) {
+    const valid =
+      getValidThemes(i.preference, style.themes, style.tagRotation, systemTheme);
+    const oldSelectedId = computed.selectedTheme.id;
+
+    const cached = style[i.targetProperty];
+    const isOldThemeStillValid =
+      ()=>valid.some(theme => theme.id === oldSelectedId);
+
+    let newSelected: UUID;
+    if(cached){
+      newSelected = cached;
+    } else if (isOldThemeStillValid()) {
+      newSelected = oldSelectedId;
+    } else {
+      newSelected = valid[0].id;
+    }
+
+    style[i.targetProperty] = newSelected;
   }
 
-  style[newTargetProperty] = newSelected,
   style.preference = preference;
 }
 

@@ -1,5 +1,5 @@
 import { hasKotlinInterface } from "../platform";
-import { setCSSGlobal, setPrepaintCache, STYLE_ROOT } from "./prepaint/shared";
+import { setPrepaintCache, STYLE_ROOT } from "./prepaint/shared";
 import { colorEquals, isLight, type OpaqueColor } from "./color";
 import { findTheme, type StyleRuntimeInfo } from "./derived";
 import { persistStyle } from "./persist";

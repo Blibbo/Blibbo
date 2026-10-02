@@ -1,7 +1,10 @@
+import { browser } from '$app/env';
 import { System } from '@wailsio/runtime';
 
 export const IS_WINDOWS_APP = System.IsWindows();
 export const IS_ANDROID_APP = System.IsAndroid();
+
+export const IS_CHROMIUM = (window as any).chrome;
 
 // PRIMARY input is a touchscreen
 export const IS_TOUCH_SCREEN = window.matchMedia("(pointer: coarse)").matches;

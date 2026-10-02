@@ -1,0 +1,76 @@
+<script lang="ts">
+import Select from "$lib/components/Select.svelte";
+import { Switch } from "$lib/components/switch";
+import typia from "typia";
+import { dynamicAccent, staticAccent, type Accent, type Accent2 } from "../accent";
+import { type DynamicAccent2Value, type DynamicAccentValue } from "../accent-variables";
+import { ACCENT, BLUE_ACCENT, GREEN_ACCENT, JENNI_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT } from "../config";
+import ColorPicker from "$lib/components/color-picker/ColorPicker.svelte";
+import {ColorPicker as ArkColorPicker} from "@ark-ui/svelte";
+  import { getStyleContext } from "../main.svelte";
+
+type Props = {
+  kind?: "accent" | undefined;
+  accent: Accent;
+} | {
+  kind: "accent2";
+  accent: Accent2;
+};
+
+let {
+  accent = $bindable(),
+  kind,
+}: Props = $props();
+
+let dynamicAccents = typia.misc.literals<DynamicAccentValue>();
+let dynamicAccents2 = typia.misc.literals<DynamicAccent2Value>();
+
+const manager = getStyleContext();
+
+</script>
+
+<div class="flex gap-x-2 justify-between items-end">
+  {#if accent.kind === "static"}
+    <ColorPicker
+      type="any"
+      bind:value={accent.value}
+      swatches={[ACCENT, JENNI_ACCENT, BLUE_ACCENT, GREEN_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT]}
+      labelClass="capitalize"
+      label={kind ?? "Accent"}
+    />
+  {:else}
+    <div class="flex items-end">
+      <ArkColorPicker.Root aria-hidden>
+        <div class="preset-swatch m-1 relative">
+          <ArkColorPicker.TransparencyGrid class="rounded-full"/>
+          <ArkColorPicker.Swatch value={manager.variables[accent.value]?.raw}
+            class="rounded-full size-full"></ArkColorPicker.Swatch>
+        </div>
+      </ArkColorPicker.Root>
+      
+      <Select lazyMount unmountOnExit noClear
+        label={kind ?? "Accent"}
+        labelClass="capitalize -translate-x-[2.29em] block"
+        items={kind === "accent2" ? dynamicAccents2 : dynamicAccents}
+        onValueChange={v=>{
+          accent = dynamicAccent(v.value[0] as DynamicAccentValue);
+        }}
+        value={[accent.value]}
+      />
+    </div>
+  {/if}
+
+  <Switch class="flex-row-reverse mb-1.5" checked={accent.kind === "dynamic"}
+    onCheckedChange={details => {
+      const dynamic = details.checked;
+
+      if(dynamic) {
+        accent = dynamicAccent("OnPage");
+      } else {
+        accent = staticAccent(ACCENT);
+      }
+    }}
+  >
+    Dynamic
+  </Switch>
+</div>

@@ -71,7 +71,7 @@ export type DynamicAccentValueFor<Name extends AccentName> =
     : [Name] extends ["Accent2"]
       ? keyof Accent2Dependencies
       : never
-  ), AccentName>;
+  ), Name>;
 
 export type DynamicAccentValue = DynamicAccentValueFor<"Accent">;
 export type DynamicAccent2Value = DynamicAccentValueFor<"Accent2">;
@@ -134,11 +134,13 @@ function computeAccentVariablesFor<Name extends AccentName>(
       ? deps.OnLight
       : deps.OnDark;
 
-  const offAccent = raw.kind === "dynamic"
+  let offAccent = raw.kind === "dynamic"
     ? deps[getOtherNonContrastingPrefix(raw.value) as keyof AccentDependenciesFor<Name>] as OpaqueColor
     : isLight(opaque)
       ? deps.OnDark
       : deps.OnLight;
+
+  if(!offAccent) offAccent = opaque;
 
   const pageUnlike = computeColor1OnColor2(deps.Page, opaque, {
     type: "unlike",
@@ -234,6 +236,8 @@ function computeAccent2Variables(deps: Accent2Dependencies): AccentVariables<"Ac
 const TOGGLE_CONTRAST_PREFIX_MAP = [
   ["OnLight", "OnDark"],
   ["OnDark", "OnLight"],
+  ["Accent2Transparent", "OnAccent2"],
+  ["AccentTransparent", "OnAccent"],
   ["Off", "On"],
   ["On", ""],
   ["", "On"],
@@ -247,6 +251,8 @@ function toggleVariableContrastPrefix<T extends string>(
 const NON_CONTRASTING_PREFIX_MAP = [
   ["OnLight", "OnLight"],
   ["OnDark", "OnDark"],
+  ["Accent2Transparent", "OffAccent2"],
+  ["AccentTransparent", "OffAccent"],
   ["On", "On"],
   ["Off", ""],
   ["", "Off"],

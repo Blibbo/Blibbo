@@ -89,6 +89,14 @@ export const STYLE_PRESETS = {
       },
     ],
   },
+  redtext: {
+    ...PRESET_TOGGLEABLE,
+    accent: staticAccent(ACCENT),
+    accent2: dynamicAccent2("AccentComplementary"),
+    onLight: "#9C0000",
+    onDark: "FFB5B5",
+  },
+  // accents: {},
 } as const satisfies Record<string, StyleConfig>;
 
 export const DEFAULT_PRESET = STYLE_PRESETS.default;

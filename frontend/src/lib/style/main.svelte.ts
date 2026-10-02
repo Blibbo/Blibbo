@@ -150,6 +150,10 @@ export class StyleManager {
     );
   }
 
+  get nextThemeExists(): boolean {
+    return this.computed.selectedTheme.id !== this.computed.nextTheme.id
+  }
+
   nextTheme(): void {
     nextTheme(this.#runtime, this.computed);
   }

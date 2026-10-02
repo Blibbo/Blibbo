@@ -29,7 +29,12 @@ let {
 
 @layer components {
   :global([data-scope="dialog"][data-part="content"]) {
-    @apply preset-page preset-surface outline outline-primary-readable-on-surface relative p-3 rounded-xl space-y-2;
+    @apply
+      preset-page preset-surface
+      outline outline-primary-readable-on-surface
+      relative p-3 rounded-xl space-y-2
+      overflow-scroll
+    ;
   }
 }
 </style>

@@ -22,6 +22,10 @@
   @apply shadow-gray-400 shadow-xl dark:shadow-2xl dark:shadow-black;
 }
 
+@utility preset-swatch {
+  @apply rounded-full size-6 relative outline outline-on-surface;
+}
+
 @utility preset-card {
   @apply rounded-2xl p-4;
 }
@@ -86,6 +90,10 @@
 
 @utility preset-outline-contrast {
   @apply outline outline-on-surface ring-1 ring-surface ring-offset-1;
+}
+
+@utility preset-outline-primary-offset {
+  @apply preset-outline-primary outline-offset-1;
 }
 
 @utility preset-outline-svg {

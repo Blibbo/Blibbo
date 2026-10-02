@@ -19,7 +19,7 @@ const NextThemeIcon = $derived(manager.computed.nextThemeIcon);
 
 </script>
 
-{#if manager.computed.selectedTheme.id !== manager.computed.nextTheme.id}
+{#if manager.nextThemeExists}
 
 <button
   {...rest}

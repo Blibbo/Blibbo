@@ -1,29 +1,42 @@
 <script lang="ts">
 import { ColorPicker } from "@ark-ui/svelte";
-import type { ComponentProps } from 'svelte';
-import { getColorPickerContext } from "./ColorPickerRoot.svelte";
+import { getColorPickerContext } from "./ColorPicker.svelte";
+import type { Snippet } from "svelte";
 
-type Props = ComponentProps<typeof ColorPicker.Trigger>;
+type Props = {
+  label: string | Snippet;
+  inlineLabel?: boolean | undefined;
+  triggerClass?: string | undefined;
+  labelClass?: string | undefined;
+};
 
 let {
-  children,
-  ...rest
+  label,
+  inlineLabel,
+  labelClass,
+  triggerClass,
 }: Props = $props();
 
 const ctx = getColorPickerContext();
 
 </script>
 
-<ColorPicker.Label hidden>{@render children?.()}</ColorPicker.Label>
-<ColorPicker.Trigger {...rest}>
-  <div class="rounded-full relative outline outline-on-surface">
+<ColorPicker.Label class={labelClass} hidden={inlineLabel}>
+  {#if typeof label === "string"}{label}{:else}{@render label()}{/if}
+</ColorPicker.Label>
+<ColorPicker.Trigger class={triggerClass}>
+  <div class="preset-swatch relative">
     <ColorPicker.TransparencyGrid hidden={ctx().type !== "any"} class="rounded-full"/>
     <ColorPicker.Swatch value={ctx().value?.raw}
-      class="relative size-6 rounded-full"
+      class="relative size-full rounded-full"
     ></ColorPicker.Swatch>
   </div>
 
-  {@render children?.()}
+  {#if inlineLabel}
+    {#if typeof label === "string"}{label}{:else}{@render label()}{/if}
+  {:else}
+    {ctx().value?.d().toHex().toUpperCase()}
+  {/if}
 </ColorPicker.Trigger>
 
 <style>
@@ -32,7 +45,10 @@ const ctx = getColorPickerContext();
 :global {
   @layer components {
     [data-scope="color-picker"][data-part="trigger"] {
-      @apply flex items-center p-2 gap-x-1 clickable-fade rounded-full;
+      @apply flex items-center p-1 gap-x-1 clickable-fade rounded-full;
+    }
+    [data-scope="color-picker"][data-part="label"] {
+      @apply preset-label block;
     }
   }
 }

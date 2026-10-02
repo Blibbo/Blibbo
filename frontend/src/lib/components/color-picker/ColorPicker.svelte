@@ -1,7 +1,7 @@
 <script module lang="ts">
 export type ColorPickerCtxPrimitive = {
   value: ValidColor;
-  type: "any";
+  type?: "any" | undefined;
 } | {
   value: OpaqueColor;
   type: "opaque";
@@ -23,19 +23,31 @@ export const [
 ] = createContext<()=>ColorPickerCtx>();
 </script>
 
-<script lang="ts">
+<script lang="ts" generics="T extends ColorPickerCtxPrimitive">
 import { ColorPicker, parseColor } from '@ark-ui/svelte/color-picker'
-import "./color-picker.css";
 import { createContext, type ComponentProps } from 'svelte';
 import { opaqueColor, readableOnDark, readableOnLight, validColor, type OpaqueColor, type ReadableOnDark, type ReadableOnLight, type ValidColor } from '../../style/color';
+import ColorPickerTrigger from './ColorPickerTrigger.svelte';
+import ColorPickerContent from './ColorPickerContent.svelte';
 
-type Props = Partial<ColorPickerCtxPrimitive>
-  & Omit<ComponentProps<typeof ColorPicker.Root>, "value">;
+type Props = T
+  & Omit<ComponentProps<typeof ColorPicker.Root>, "value" | "children" | "onValueChange">
+  & ComponentProps<typeof ColorPickerTrigger>
+  & ComponentProps<typeof ColorPickerContent>
+  & { onValueChange?: ((value: T["value"])=>void) | undefined }
+  ;
 
 let {
   type = "any",
-  value = $bindable(validColor("#000")),
-  children,
+  value = $bindable(),
+  onValueChange,
+  label,
+  inlineLabel,
+  positioning = {placement: "bottom-start"},
+  swatches,
+  labelClass,
+  triggerClass,
+  contentClass,
   ...rest
 }: Props = $props();
 
@@ -52,7 +64,7 @@ setColorPickerContext(()=>{return {
 function updateValue(newValue: string) {
 
   const wrapError = (
-    validator: (v: string)=>ValidColor,
+    validator: (v: string)=>T["value"],
     msg: string
   ) => {
     try {
@@ -81,9 +93,11 @@ function updateValue(newValue: string) {
 
 </script>
 
-<ColorPicker.Root {...rest} onValueChange={(details)=>{
+<ColorPicker.Root {positioning} {...rest} onValueChange={(details)=>{
   const newValue = details.valueAsString
   updateValue(newValue);
+  onValueChange?.(value);
 }} value={pickerValue}>
-  {@render children?.()}
+  <ColorPickerTrigger {label} {inlineLabel} {triggerClass} {labelClass}/>
+  <ColorPickerContent {swatches} {contentClass}/>
 </ColorPicker.Root>
