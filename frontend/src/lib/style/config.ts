@@ -228,7 +228,7 @@ export function hydratePreset(preset: StyleConfig): StyleRuntime {
   return {
     ...preset,
     accent: preset.accent ? hydrateAccent(preset.accent) : undefined,
-    accent2: preset.accent2 ? hydrateAccent2(preset.accent) : undefined,
+    accent2: preset.accent2 ? hydrateAccent2(preset.accent2) : undefined,
     onLight: preset.onLight ? readableOnLight(preset.onLight) : undefined,
     onDark: preset.onDark ? readableOnDark(preset.onDark) : undefined,
     themes,
