@@ -2,7 +2,6 @@
   import MainLayout from "$lib/components/MainLayout.svelte";
 
   import Card from "$lib/components/CardLink.svelte";
-  import { GREEN_ACCENT } from "$lib/style/config";
   import { System } from "@wailsio/runtime";
   import type { ComponentProps } from "svelte";
 

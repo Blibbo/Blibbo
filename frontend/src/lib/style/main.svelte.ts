@@ -81,8 +81,11 @@ export class StyleManager {
     this.#runtime = $state(loadStyle(persistKey, defaultStyle));
     this.computed = $derived.by(()=>{
       const reactiveProxy = $state(computeRuntimeInfo(this.#runtime, systemTheme.value));
-      return reactiveProxy
+      $inspect(reactiveProxy);
+      return reactiveProxy;
     });
+
+    // this.computed = $derived(computeRuntimeInfo(this.#runtime, systemTheme.value));
 
     this.active = $derived.by(()=>{
       const reactiveProxy = $state(computeIndependentVariables(this.#runtime, this.computed));
@@ -150,10 +153,6 @@ export class StyleManager {
     );
   }
 
-  get nextThemeExists(): boolean {
-    return this.computed.selectedTheme.id !== this.computed.nextTheme.id
-  }
-
   nextTheme(): void {
     nextTheme(this.#runtime, this.computed);
   }
@@ -167,13 +166,12 @@ export function overrideStyle(
   defaultStyle: StyleConfig
 ): void {
   try{
-    const previous =
-      getStyleContext().override(persistKey, defaultStyle);
+    const manager = getStyleContext();
+    const previous = manager.override(persistKey, defaultStyle);
     
     onDestroy(()=>{
-      getStyleContext().
-        override(previous.persistKey, previous.defaultStyle);
-    })
+      manager.override(previous.persistKey, previous.defaultStyle);
+    });
   } catch {
     throw new Error(`Unable to override style: application style not set.`);
   }

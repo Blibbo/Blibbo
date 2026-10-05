@@ -7,18 +7,21 @@ import { type DynamicAccent2Value, type DynamicAccentValue } from "../accent-var
 import { ACCENT, BLUE_ACCENT, GREEN_ACCENT, JENNI_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT } from "../config";
 import ColorPicker from "$lib/components/color-picker/ColorPicker.svelte";
 import {ColorPicker as ArkColorPicker} from "@ark-ui/svelte";
-  import { getStyleContext } from "../main.svelte";
+import { getStyleContext } from "../main.svelte";
 
 type Props = {
+  noSwitch?: boolean | undefined;
+} & ({
   kind?: "accent" | undefined;
   accent: Accent;
 } | {
   kind: "accent2";
   accent: Accent2;
-};
+});
 
 let {
   accent = $bindable(),
+  noSwitch,
   kind,
 }: Props = $props();
 
@@ -29,7 +32,7 @@ const manager = getStyleContext();
 
 </script>
 
-<div class="flex gap-x-2 justify-between items-end">
+{#snippet picker()}
   {#if accent.kind === "static"}
     <ColorPicker
       type="any"
@@ -59,18 +62,26 @@ const manager = getStyleContext();
       />
     </div>
   {/if}
+{/snippet}
 
-  <Switch class="flex-row-reverse mb-1.5" checked={accent.kind === "dynamic"}
-    onCheckedChange={details => {
-      const dynamic = details.checked;
+{#if noSwitch}
+  {@render picker()}
+{:else}
+  <div class="flex gap-x-2 justify-between items-end">
+    {@render picker()}
 
-      if(dynamic) {
-        accent = dynamicAccent("OnPage");
-      } else {
-        accent = staticAccent(ACCENT);
-      }
-    }}
-  >
-    Dynamic
-  </Switch>
-</div>
+    <Switch class="flex-row-reverse mb-1.5" checked={accent.kind === "dynamic"}
+      onCheckedChange={details => {
+        const dynamic = details.checked;
+
+        if(dynamic) {
+          accent = dynamicAccent("OnPage");
+        } else {
+          accent = staticAccent(ACCENT);
+        }
+      }}
+    >
+      Dynamic
+    </Switch>
+  </div>
+{/if}

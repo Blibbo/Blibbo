@@ -1,7 +1,8 @@
 <script lang="ts">
 import "$app.css";
 import Style from "$lib/style/components/Style.svelte";
-import { DEFAULT_PRESET, STYLE_PRESETS } from "../lib/style/config";
+    import ThemePreferencePicker from "$lib/style/components/ThemePreferencePicker.svelte";
+import { DEFAULT_PRESET } from "../lib/style/config";
 
 let { children } = $props();
 
@@ -9,7 +10,7 @@ let { children } = $props();
 
 <Style
   persistKey="main"
-  defaultStyle={STYLE_PRESETS.toggleable}
+  defaultStyle={DEFAULT_PRESET}
 >
   {@render children?.()}
 </Style>

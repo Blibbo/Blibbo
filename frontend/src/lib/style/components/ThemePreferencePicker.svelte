@@ -11,10 +11,10 @@ const manager = getStyleContext();
 
 </script>
 
-<div class={manager.nextThemeExists ? "flex gap-2 items-end" : ""}>
+<div class="text-nowrap {manager.computed.nextThemeExists ? "flex gap-2 items-end" : ""}">
   <Select lazyMount unmountOnExit noClear
-    class={manager.nextThemeExists ? "flex-1 mb-1" : "flex items-center justify-between"}
-    labelClass={manager.nextThemeExists ? "" : "text-base"}
+    class={manager.computed.nextThemeExists ? "flex-1 mb-1" : "flex gap-x-2 items-center justify-between"}
+    labelClass={manager.computed.nextThemeExists ? "" : "text-base"}
     label="Theme preference"
     onValueChange={v =>
       manager.preference = v.value[0] as StyleRuntime["preference"]

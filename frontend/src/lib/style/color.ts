@@ -117,7 +117,6 @@ export function colorEquals(color1: ValidColor, color2: ValidColor): boolean {
 }
 
 export function contrastIsVisible(color1: OpaqueColor, color2: OpaqueColor): boolean {
-  // console.log(color1.raw, color2.raw, color1.d().contrast(color2.d()));
   // TODO fix with hue, test with yellow
   return color1.d().contrast(color2.d()) > 2;
 }

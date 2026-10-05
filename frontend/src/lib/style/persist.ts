@@ -45,7 +45,7 @@ function hydrateStylePersist(stored: StylePersist): StyleRuntime {
     ...stored,
 
     accent: hydrateAccent(stored.accent),
-    accent2: stored.accent2 ? hydrateAccent2(stored.accent2) : undefined,
+    accent2: hydrateAccent2(stored.accent2),
 
     onLight: readableOnLight(stored.onLight),
     onDark: readableOnDark(stored.onDark),
@@ -71,7 +71,7 @@ function dehydrateStyle(style: StyleRuntimeReadonly): StylePersist {
     ...style,
 
     accent: dehydrateAccent(style.accent),
-    accent2: style.accent2 ? dehydrateAccent2(style.accent2) : undefined,
+    accent2: dehydrateAccent2(style.accent2),
     
     onLight: style.onLight.raw,
     onDark: style.onDark.raw,

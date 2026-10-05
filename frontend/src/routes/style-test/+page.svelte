@@ -8,12 +8,13 @@ import StyleTest from "$lib/style/components/StyleTest.svelte";
 import { Menu } from "$lib/components/menu";
 import { Switch } from "$lib/components/switch";
 import Select from "$lib/components/Select.svelte";
+    import ThemePreferencePicker from "$lib/style/components/ThemePreferencePicker.svelte";
 
 overrideStyle("test-surface", STYLE_PRESETS.weather);
 
 const manager = getStyleContext();
 
-function lightning() {
+function lightning() {  
   const oldColor = manager.active.Page;
   const oldAccent = manager.active.Accent;
   manager.active.Page = opaqueColor("#fff");
@@ -38,10 +39,10 @@ function lightning() {
     </div>
 
 
-    <StyleTest
+    <!-- <StyleTest
       persistKey="super-test"
       defaultStyle={DEFAULT_PRESET}
-    />
+    /> -->
 
     <!-- <TagsInput
       defaultValue={['Vanilla', 'Chocolate', 'Strawberry']}
@@ -82,5 +83,7 @@ function lightning() {
     </Menu>
 
     <Switch>Switch label</Switch>
+
+    <ThemePreferencePicker/>
   </div>
 </MainLayout>

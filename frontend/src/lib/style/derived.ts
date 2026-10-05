@@ -7,7 +7,7 @@ import Stormy from 'virtual:icons/famicons/thunderstorm-outline';
 import Snowy from 'virtual:icons/material-symbols/cloudy-snowing';
 import { getSystemTheme } from "./prepaint/shared";
 import { assertNonEmpty } from "../types";
-import { isLight } from "./color";
+import { isLight, opaqueColor } from "./color";
 import type { UUID } from "./main.svelte";
 import type { StyleRuntime, StyleRuntimeReadonly } from "./mutation";
 import type { SystemTheme } from "./system-theme.svelte";
@@ -22,6 +22,7 @@ export type StyleRuntimeInfo = Readonly<{
   selectedTheme: StyleRuntime["themes"][number];
   nextTheme: StyleRuntime["themes"][number];
   nextThemeIcon: Component;
+  nextThemeExists: boolean;
 }>;
 
 type SpecialTag = typeof SPECIAL_TAG_NAMES[number];
@@ -43,7 +44,7 @@ export function computeRuntimeInfo(
   const selectedThemeId = runtime[selectionProperty]!;
   const selectedTheme = findTheme(selectedThemeId, runtime.themes,
     "Selected theme not found, style state is invalid.");
-
+  
   // next theme
   const valid = getValidThemes(runtime.preference, runtime.themes, runtime.tagRotation, systemTheme);
   const validSelectedIndex = findThemeIndex(selectedThemeId, valid,
@@ -51,11 +52,14 @@ export function computeRuntimeInfo(
   const nextTheme = valid[nextIndex(validSelectedIndex, valid.length)]!;
   const nextThemeIcon = getIcon(nextTheme.tags, isLight(nextTheme.page));
 
+  const nextThemeExists = selectedThemeId !== nextTheme.id;
+
   return {
     selectionProperty,
     selectedTheme,
     nextTheme,
     nextThemeIcon,
+    nextThemeExists,
   };
 }
 
