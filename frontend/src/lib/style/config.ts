@@ -14,25 +14,6 @@ export type StyleConfig = ReadonlyDeep<
   }>
 >;
 
-const PRESET_GENERAL = {
-  onLight: ON_LIGHT,
-  onDark: ON_DARK,
-  accent2: dynamicAccent2("AccentComplementary"),
-} as const;
-const PRESET_TOGGLEABLE = presetToggleable();
-const PRESET_SYSTEM = presetSystem();
-const PRESET_CLOUDY = {
-  ...PRESET_TOGGLEABLE,
-  accent: dynamicAccent("OnPage"),
-  themes: [
-    ...PRESET_TOGGLEABLE.themes,
-    {
-      page: "#697c80",
-      tags: ["cloudy"],
-    },
-  ],
-} as const;
-
 // accents: hotter pink: #ff0063 light blue: #00FFF3 light pink: #C4588C purple: #9B61B0
 export const ACCENT = "#67787c";
 export const JENNI_ACCENT = "#F00073";
@@ -42,11 +23,32 @@ export const ORANGE_ACCENT = "#E8541A";
 export const YELLOW_ACCENT = "#D9ED00";
 export const LIGHT_ORANGE_ACCENT = "#D99A52";
 
+const PRESET_GENERAL = {
+  onLight: ON_LIGHT,
+  onDark: ON_DARK,
+  accent2: dynamicAccent2("AccentComplementary"),
+} as const;
+const PRESET_TOGGLEABLE = presetToggleable();
+const PRESET_SYSTEM = presetSystem();
+const PRESET_CLOUDY = {
+  ...PRESET_TOGGLEABLE,
+  accent: staticAccent(ACCENT),
+  themes: [
+    ...PRESET_TOGGLEABLE.themes,
+    ...PRESET_TOGGLEABLE.themes,
+    {
+      page: "#697c80",
+      accent: dynamicAccent("Page"),
+      tags: ["cloudy"],
+    },
+  ],
+} as const;
+
 export const STYLE_PRESETS = {
   default: {
     ...PRESET_SYSTEM,
     accent: staticAccent(ACCENT),
-    accent2: staticAccent(ORANGE_ACCENT),
+    // accent2: staticAccent(ORANGE_ACCENT),
   },
   hotPink: {
     ...PRESET_SYSTEM,
@@ -75,6 +77,7 @@ export const STYLE_PRESETS = {
       ...PRESET_CLOUDY.themes,
       {
         page: "#4a6583",
+        accent: dynamicAccent("Page"),
         tags: ["rainy"],
       },
       {
@@ -89,12 +92,12 @@ export const STYLE_PRESETS = {
       },
     ],
   },
-  redtext: {
+  redText: {
     ...PRESET_TOGGLEABLE,
     accent: staticAccent(ACCENT),
     accent2: dynamicAccent2("AccentComplementary"),
     onLight: "#9C0000",
-    onDark: "FFB5B5",
+    onDark: "#FFB5B5",
   },
   // accents: {},
 } as const satisfies Record<string, StyleConfig>;
@@ -106,7 +109,7 @@ function presetToggleable<
   T2 extends string = typeof DARK
 >(
   light: T1 = LIGHT as T1,
-  dark: T2 = DARK as T2
+  dark: T2 = DARK as T2,
 ) {
   return {
     ...PRESET_GENERAL,

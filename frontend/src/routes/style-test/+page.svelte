@@ -51,10 +51,10 @@ function lightning() {
     /> -->
 
     <Select closeOnSelect={false} items={[
-      { label: 'React', value: 'react', type: "type 1" },
-      { label: 'Solid', value: 'solid', type: "type 2" },
-      { label: 'Vue', value: 'vue', type: "type 1" },
-      { label: 'Svelte', value: 'svelte', type: "type 2" },
+      { label: 'Item 1', value: '1', type: "Group label 1" },
+      { label: 'Item 2', value: '2', type: "Group label 2" },
+      { label: 'Item 3', value: '3', type: "Group label 1" },
+      { label: 'Item 4', value: '4', type: "Group label 2" },
     ]} groupBy={i=>i.type} placeholder=Select label=Frameworks>
     </Select>
 
@@ -85,7 +85,7 @@ function lightning() {
 
     <Switch>Switch label</Switch>
 
-    <TagsInput label=Frameworks placeholder="Add Framework"/>
+    <TagsInput label="Tag input label" placeholder="Tag input placeholder"/>
 
   </div>
 </MainLayout>

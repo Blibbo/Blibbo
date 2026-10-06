@@ -26,16 +26,17 @@ let {
         <div class="flex items-center gap-1 flex-wrap p-1 preset-outline-primary rounded-sm">
           {#each tagsInput().value as value, index (index)}
             <TagsInput.Item class="flex items-center" {index} {value}>
-              <TagsInput.ItemPreview class="preset-primary rounded-sm flex items-center">
-                <TagsInput.ItemText class="wrap-anywhere px-0.5">{value}</TagsInput.ItemText>
+              {@const ITEM = "rounded-sm wrap-anywhere px-0.5"}
+              <TagsInput.ItemPreview class="preset-primary {ITEM} flex items-center">
+                <TagsInput.ItemText>{value}</TagsInput.ItemText>
                 <TagsInput.ItemDeleteTrigger class="clickable-fade">
                   <XIcon />
                 </TagsInput.ItemDeleteTrigger>
               </TagsInput.ItemPreview>
-              <TagsInput.ItemInput />
+              <TagsInput.ItemInput class="{ITEM} preset-input preset-surface py-0"/>
             </TagsInput.Item>
           {/each}
-          <TagsInput.Input class="focus-visible:outline-none" placeholder={placeholder} />
+          <TagsInput.Input class="focus-visible:outline-none placeholder:text-primary-readable-on-surface flex-1" {placeholder} />
         </div>
         <TagsInput.ClearTrigger class="clickable-fade text-sm text-primary-readable-on-surface">
           Clear all

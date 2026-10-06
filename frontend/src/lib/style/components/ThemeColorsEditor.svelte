@@ -23,6 +23,7 @@ const manager = getStyleContext();
       <TagsInput label=Tags
         value={theme.tags ? [...theme.tags] : undefined}
         onValueChange={v=>theme.tags = new Set(v.value)}
+        placeholder="Add tag"
       />
 
       <ThemeColorPicker inherited={!theme.accent} label=Accent
@@ -36,7 +37,7 @@ const manager = getStyleContext();
         onAdd={()=>theme.accent2 = staticAccent(ACCENT)}
         onRemove={()=>theme.accent2 = undefined}
       >
-        <AccentPicker bind:accent={theme.accent2!} kind="accent2"/>
+        <AccentPicker class="flex-1" bind:accent={theme.accent2!} kind="accent2"/>
       </ThemeColorPicker>
 
       <ThemeColorPicker inherited={!theme.onLight} label="On Light"
@@ -44,18 +45,18 @@ const manager = getStyleContext();
         onRemove={()=>theme.onLight = undefined}
       >
         <ColorPicker lazyMount unmountOnExit
-          label="On light"
+          label="On Light"
           type="readable-on-light"
           bind:value={theme.onLight!}
         />
       </ThemeColorPicker>
 
-      <ThemeColorPicker inherited={!theme.onDark} label=Accent2
+      <ThemeColorPicker inherited={!theme.onDark} label="On Dark"
         onAdd={()=>theme.onDark = readableOnDark(ON_DARK)}
         onRemove={()=>theme.onDark = undefined}
       >
         <ColorPicker lazyMount unmountOnExit
-          label="On dark"
+          label="On Dark"
           type="readable-on-dark"
           bind:value={theme.onDark!}
         />

@@ -4,15 +4,13 @@ import ChevronLeft from "$lib/components/icons/ChevronLeft.svelte";
 import { getStyleContext } from "../main.svelte";
 import AccentPicker from "./AccentPicker.svelte";
 import GlobalColorsEditor from "./GlobalColorsEditor.svelte";
-  import TagsInput from "./TagsInput.svelte";
+import TagsInput from "./TagsInput.svelte";
 import ThemeColorsEditor from "./ThemeColorsEditor.svelte";
 import ThemePreferencePicker from "./ThemePreferencePicker.svelte";
 
 const manager = getStyleContext();
 
 let advanced = $state(false);
-
-let tagRotation = $derived(manager.runtime.tagRotation ? [...manager.runtime.tagRotation] : undefined);
 
 </script>
 
@@ -37,7 +35,8 @@ let tagRotation = $derived(manager.runtime.tagRotation ? [...manager.runtime.tag
       {#if manager.runtime.preference === "custom"}
         <TagsInput label="Tag rotation"
           value={manager.runtime.tagRotation ? [...manager.runtime.tagRotation] : undefined}
-          onValueChange={(v)=>new Set(v.value)}
+          onValueChange={(v)=>manager.runtime.tagRotation = new Set(v.value)}
+          placeholder="Add tag"
         />
       {/if}
 

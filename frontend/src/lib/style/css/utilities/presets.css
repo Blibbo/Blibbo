@@ -44,6 +44,7 @@
 
 @utility preset-scrollbar {
   @apply
+    overflow-auto
     scrollbar-thumb-primary-visible-on-surface
     scrollbar-track-surface
     scrollbar-thin
@@ -54,7 +55,7 @@
 
 @utility preset-menu {
   @apply preset-page preset-surface rounded-md p-0.75 preset-outline-primary
-    overflow-scroll preset-scrollbar max-h-[50dvh]
+    preset-scrollbar max-h-[50dvh]
   ;
 }
 
