@@ -2,7 +2,7 @@
 import Select from "$lib/components/Select.svelte";
 import { Switch } from "$lib/components/switch";
 import typia from "typia";
-import { dynamicAccent, staticAccent, type Accent, type Accent2 } from "../accent";
+import { dynamicAccent, dynamicAccent2, staticAccent, type Accent, type Accent2 } from "../accent";
 import { type DynamicAccent2Value, type DynamicAccentValue } from "../accent-variables";
 import { ACCENT, BLUE_ACCENT, GREEN_ACCENT, JENNI_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT } from "../config";
 import ColorPicker from "$lib/components/color-picker/ColorPicker.svelte";
@@ -11,6 +11,7 @@ import { getStyleContext } from "../main.svelte";
 
 type Props = {
   noSwitch?: boolean | undefined;
+  class?: string | undefined;
 } & ({
   kind?: "accent" | undefined;
   accent: Accent;
@@ -23,6 +24,7 @@ let {
   accent = $bindable(),
   noSwitch,
   kind,
+  class: className,
 }: Props = $props();
 
 let dynamicAccents = typia.misc.literals<DynamicAccentValue>();
@@ -34,7 +36,7 @@ const manager = getStyleContext();
 
 {#snippet picker()}
   {#if accent.kind === "static"}
-    <ColorPicker
+    <ColorPicker lazyMount unmountOnExit
       type="any"
       bind:value={accent.value}
       swatches={[ACCENT, JENNI_ACCENT, BLUE_ACCENT, GREEN_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT]}
@@ -56,7 +58,9 @@ const manager = getStyleContext();
         labelClass="capitalize -translate-x-[2.29em] block"
         items={kind === "accent2" ? dynamicAccents2 : dynamicAccents}
         onValueChange={v=>{
-          accent = dynamicAccent(v.value[0] as DynamicAccentValue);
+          accent = kind === "accent2"
+            ? dynamicAccent2(v.value[0] as DynamicAccent2Value)
+            : dynamicAccent(v.value[0] as DynamicAccentValue);
         }}
         value={[accent.value]}
       />
@@ -67,7 +71,7 @@ const manager = getStyleContext();
 {#if noSwitch}
   {@render picker()}
 {:else}
-  <div class="flex gap-x-2 justify-between items-end">
+  <div class="accent-picker {className}">
     {@render picker()}
 
     <Switch class="flex-row-reverse mb-1.5" checked={accent.kind === "dynamic"}
@@ -85,3 +89,13 @@ const manager = getStyleContext();
     </Switch>
   </div>
 {/if}
+
+<style>
+@reference "$app.css";
+
+@layer components {
+  .accent-picker {
+    @apply flex gap-x-2 justify-between items-end;
+  }
+}
+</style>

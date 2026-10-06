@@ -9,6 +9,7 @@ import { Menu } from "$lib/components/menu";
 import { Switch } from "$lib/components/switch";
 import Select from "$lib/components/Select.svelte";
     import ThemePreferencePicker from "$lib/style/components/ThemePreferencePicker.svelte";
+  import TagsInput from "$lib/style/components/TagsInput.svelte";
 
 overrideStyle("test-surface", STYLE_PRESETS.weather);
 
@@ -84,6 +85,7 @@ function lightning() {
 
     <Switch>Switch label</Switch>
 
-    <ThemePreferencePicker/>
+    <TagsInput label=Frameworks placeholder="Add Framework"/>
+
   </div>
 </MainLayout>

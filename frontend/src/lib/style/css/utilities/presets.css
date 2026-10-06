@@ -42,10 +42,20 @@
   @apply flex justify-between items-center gap-x-0.5;
 }
 
+@utility preset-scrollbar {
+  @apply
+    scrollbar-thumb-primary-visible-on-surface
+    scrollbar-track-surface
+    scrollbar-thin
+  ;
+}
+
 /* menu */
 
 @utility preset-menu {
-  @apply preset-page preset-surface rounded-md p-0.75 preset-outline-primary max-h-[50dvh] overflow-scroll;
+  @apply preset-page preset-surface rounded-md p-0.75 preset-outline-primary
+    overflow-scroll preset-scrollbar max-h-[50dvh]
+  ;
 }
 
 @utility preset-menu-item {

@@ -17,8 +17,8 @@
     getIndexFromSequence[getSequenceFromIndex[i]!] = i;
   }
 
-  const classDisabled = "transition-colors duration-1000 bg-on-surface";
-  const classEnabled  = "transition-colors duration-1000 bg-secondary-unlike-surface";
+  const classDisabled = "bg-on-surface shadow-[0]";
+  const classEnabled  = "bg-secondary-unlike-surface shadow-[0_0_2em_0.25em_var(--secondary-unlike-surface)]";
 
   
   // const classDisabled = "transition-colors duration-1000 bg-red-500";
@@ -75,7 +75,13 @@
       >
         {#each squares as square, i}
           <button
-            class={getSequenceFromIndex[i] === 0? '' : square.active ? classEnabled : classDisabled}
+            class="transition-all duration-1000
+              {getSequenceFromIndex[i] === 0
+                ? ''
+                : square.active
+                  ? classEnabled
+                  : classDisabled
+              }"
             on:click={() => clicked(i)}
             title=""
           ></button>

@@ -97,11 +97,11 @@ const popupAttachment: ()=>Attachment<HTMLElement> = ()=>(menu)=>{
     </div>
   {:else if type === 'overlay'}
     <button title="" class="
-        fixed inset-0 preset-blur bg-on-light/overlay z-40
+        fixed inset-0 preset-blur bg-on-light/overlay z-
       "
       onclick={hide}
     ></button>
-    <div class="fixed inset-0 pointer-events-none flex justify-center items-center z-50">
+    <div class="fixed inset-0 pointer-events-none flex justify-center items-center z-">
       <div class="pointer-events-auto">
         {@render children()}
       </div>

@@ -108,7 +108,7 @@ const groups = $derived(collection.group());
     }
 
     [data-scope="select"][data-part="content"] {
-      @apply preset-menu z-50;
+      @apply preset-menu; /* z-; */
     }
   }
 }

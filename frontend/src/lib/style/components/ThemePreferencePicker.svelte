@@ -8,14 +8,19 @@ import { getStyleContext } from "../main.svelte";
 let preferences = typia.misc.literals<StyleRuntime["preference"]>();
 
 const manager = getStyleContext();
+const nextThemeExists = $derived(manager.computed.nextThemeExists);
 
 </script>
 
-<div class="text-nowrap {manager.computed.nextThemeExists ? "flex gap-2 items-end" : ""}">
+<div class="text-nowrap {nextThemeExists ? "flex gap-2 items-end" : ""}">
   <Select lazyMount unmountOnExit noClear
-    class={manager.computed.nextThemeExists ? "flex-1 mb-1" : "flex gap-x-2 items-center justify-between"}
-    labelClass={manager.computed.nextThemeExists ? "" : "text-base"}
+    class={nextThemeExists
+      ? "flex-1 mb-1"
+      : "flex gap-x-2 items-center justify-between"
+    }
+    labelClass={nextThemeExists ? "" : "text-base"}
     label="Theme preference"
+    controlClass={nextThemeExists ? "" : "w-20" }
     onValueChange={v =>
       manager.preference = v.value[0] as StyleRuntime["preference"]
     }

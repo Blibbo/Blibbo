@@ -4,17 +4,19 @@ import type { ComponentProps } from "svelte";
 
 type Props = {
   arrow?: boolean | undefined;
+  portal?: boolean | undefined;
 } & ComponentProps<typeof Menu.Content>;
 
 let {
   children,
   arrow,
+  portal = true,
   ...rest
 }: Props = $props();
 
 </script>
 
-<Portal>
+<Portal disabled={!portal}>
   <Menu.Positioner>
     <Menu.Content {...rest}>
       {#if arrow}

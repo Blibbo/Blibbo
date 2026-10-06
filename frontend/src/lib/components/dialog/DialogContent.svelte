@@ -13,8 +13,8 @@ let {
 </script>
 
 <Portal>
-  <Dialog.Backdrop class="fixed inset-0 preset-blur bg-on-light/overlay z-40"/>
-  <Dialog.Positioner class="fixed inset-0 flex justify-center items-center z-50">
+  <Dialog.Backdrop class="fixed inset-0 preset-blur bg-on-light/overlay z-"/>
+  <Dialog.Positioner class="fixed inset-0 flex justify-center items-center z-">
     <Dialog.Content {...rest}>
       <Dialog.CloseTrigger class="absolute top-3 right-3 clickable-fade">
         <XIcon/>

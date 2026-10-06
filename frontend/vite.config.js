@@ -23,7 +23,7 @@ export default defineConfig({
       compiler: 'svelte',
     }),
     UnpluginTypia({
-      cache: true,
+      // cache: true,
     }),
   ],
 });

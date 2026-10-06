@@ -30,7 +30,6 @@
 }
 
 @theme {
-  /* breakpoints */
   --breakpoint-xs: 30rem;
 
   /* spacing */

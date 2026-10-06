@@ -6,6 +6,8 @@ import Hamburger from 'virtual:icons/ci/hamburger-md';
 import Cog from 'virtual:icons/mdi/cog';
 import type { SVGAttributes } from 'svelte/elements';
 
+// https://icon-sets.iconify.design/
+
 type Props = {
   icon:
     | 'kebab'

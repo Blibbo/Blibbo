@@ -3,7 +3,7 @@ import { setCSSGlobal } from "$lib/style/prepaint/shared";
 import { tags } from "typia";
 import { type NonEmptyArray } from "$lib/types";
 import { systemTheme } from "./system-theme.svelte";
-import { createContext, onDestroy } from "svelte";
+import { createContext, onDestroy, untrack } from "svelte";
 import { hydratePreset, type StyleConfig } from "./config";
 import { loadStyle } from "./persist";
 import { nextTheme, setPreference, type StyleRuntime } from "./mutation";
@@ -69,7 +69,7 @@ export class StyleManager {
 
   #runtime: StyleRuntime;
 
-  readonly computed: StyleRuntimeInfo;
+  computed: StyleRuntimeInfo;
   active: Primitives;
   variables: ColorVariables;
 
@@ -79,22 +79,43 @@ export class StyleManager {
     this.defaultStyle = defaultStyle;
 
     this.#runtime = $state(loadStyle(persistKey, defaultStyle));
-    this.computed = $derived.by(()=>{
-      const reactiveProxy = $state(computeRuntimeInfo(this.#runtime, systemTheme.value));
-      $inspect(reactiveProxy);
-      return reactiveProxy;
+
+    // this.computed = $derived.by(()=>{
+    //   const reactiveProxy = $state(computeRuntimeInfo(this.#runtime, systemTheme.value));
+    //   // $inspect(reactiveProxy);
+    //   return reactiveProxy;
+    // });
+
+    // this.active = $derived.by(()=>{
+    //   const reactiveProxy = $state(computeIndependentVariables(this.#runtime, this.computed));
+    //   return reactiveProxy;
+    // });
+
+    // this.variables = $derived.by(()=>{
+    //   const reactiveProxy = $state(computeAllVariables(this.active));
+    //   return reactiveProxy;
+    // });
+
+    this.computed = $state(computeRuntimeInfo(this.#runtime, systemTheme.value));
+    this.active = $state(computeIndependentVariables(this.#runtime, this.computed));
+    this.variables = $state(computeAllVariables(this.active));
+
+    $effect(()=>{
+      // svelte-ignore state_snapshot_uncloneable
+      $state.snapshot(this.#runtime);
+      systemTheme.value;
+      untrack(()=>{
+        this.computed = computeRuntimeInfo(this.#runtime, systemTheme.value);
+        this.active = computeIndependentVariables(this.#runtime, this.computed);
+      });
     });
 
-    // this.computed = $derived(computeRuntimeInfo(this.#runtime, systemTheme.value));
-
-    this.active = $derived.by(()=>{
-      const reactiveProxy = $state(computeIndependentVariables(this.#runtime, this.computed));
-      return reactiveProxy;
-    });
-
-    this.variables = $derived.by(()=>{
-      const reactiveProxy = $state(computeAllVariables(this.active));
-      return reactiveProxy;
+    $effect(()=>{
+      // svelte-ignore state_snapshot_uncloneable
+      $state.snapshot(this.active);
+      untrack(()=>{
+        this.variables = computeAllVariables(this.active);
+      });
     })
   }
 

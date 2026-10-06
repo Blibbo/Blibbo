@@ -37,7 +37,7 @@ let sidePanelOpen = $state(false);
         min-h-full min-w-dvw fixed
         sm:min-w-0
         flex
-        z-50
+        z-
       ">
         <div class="preset-primary
           p-1

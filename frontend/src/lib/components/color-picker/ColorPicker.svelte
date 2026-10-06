@@ -51,7 +51,7 @@ let {
   ...rest
 }: Props = $props();
 
-let pickerValue = $derived(parseColor(value.d().toHex()));
+let pickerValue = $derived(parseColor(value.d()?.toHex() ?? ""));
 
 let errorMsg: ColorPickerCtx["errorMsg"] = $state(undefined);
 

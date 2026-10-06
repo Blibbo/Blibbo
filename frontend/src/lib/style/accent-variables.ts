@@ -65,13 +65,12 @@ type AccentDependenciesFor<Name extends AccentName> =
       : never;
 
 export type DynamicAccentValueFor<Name extends AccentName> =
-  Exclude<(
-    [Name] extends ["Accent"]
-    ? keyof AccentDependencies
-    : [Name] extends ["Accent2"]
-      ? keyof Accent2Dependencies
-      : never
-  ), Name>;
+  [Name] extends ["Accent"]
+  ? Exclude<keyof AccentDependencies, AccentName>
+  : [Name] extends ["Accent2"]
+    ? Exclude<keyof Accent2Dependencies, Name>
+    : never
+  ;
 
 export type DynamicAccentValue = DynamicAccentValueFor<"Accent">;
 export type DynamicAccent2Value = DynamicAccentValueFor<"Accent2">;

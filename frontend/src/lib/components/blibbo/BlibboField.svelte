@@ -4,9 +4,11 @@ import {type BlibboFieldState, type BlibboFieldProps, type FocusableEditorElemen
 import MathField from "$lib/components/mathlive/MathField.svelte";
 import CodeMirror, { type CodeMirrorProps } from "svelte-codemirror-editor";
 import { latex } from "codemirror-lang-latex";
-import Menu from "$lib/components/MenuOld.svelte";
-import { onMount, tick } from "svelte";
+import { tick } from "svelte";
 import { EditorView } from "@codemirror/view";
+import { Menu } from "../menu";
+import SettingsIconSwitch from "../icons/SettingsIconSwitch.svelte";
+  import MenuOld from "../MenuOld.svelte";
 
 let {
   field = $bindable<BlibboFieldState>(),
@@ -81,7 +83,7 @@ function handleParentPointerDown(e: PointerEvent){
 
 function handleEditorBlur(e: FocusEvent){
   blurComponent();
-
+  console.log("no")
   onblur?.(e);
 }
 
@@ -208,12 +210,32 @@ codeMirrorKeybindings.push({
   {#if (focused || !hideButtonsOnBlur) && !noButtons }
     <div class="flex items-center">
       <div>
-        <Menu icon=meatballs type=popup
+        <!-- <button>testttttttttt</button>
+        <Menu>
+          <Menu.Trigger noChevron
+            tabindex={hideButtonsOnBlur ? -1 : undefined}
+          >
+            <SettingsIconSwitch icon=meatballs/>
+          </Menu.Trigger>
+          <Menu.Content portal={false}>
+            <Menu>
+              <Menu.TriggerItem>Editor type</Menu.TriggerItem>
+              <Menu.Content>
+                <Menu.RadioGroup>
+                  <Menu.RadioItem value=math>Math</Menu.RadioItem>
+                  <Menu.RadioItem value=text>Text</Menu.RadioItem>
+                  <Menu.RadioItem value=code>Code</Menu.RadioItem>
+                </Menu.RadioGroup>
+              </Menu.Content>
+            </Menu>
+          </Menu.Content>
+        </Menu> -->
+        <MenuOld icon=meatballs type=popup
           class="bg-primary text-on-primary rounded-sm sm:p-2"
           tabindex={hideButtonsOnBlur ? -1 : undefined}
         >
           <div class="text-lg rounded-sm bg-primary text-on-primary p-2 text-nowrap">
-            <Menu icon=none >
+            <MenuOld icon=none >
               {#snippet buttonContent()}
                 Editor type
               {/snippet}
@@ -223,9 +245,9 @@ codeMirrorKeybindings.push({
                 <button onclick={()=>{editorType='text'}}>Text</button>
                 <button onclick={()=>{editorType='code'}}>Code</button>
               </div>
-            </Menu>
+            </MenuOld>
           </div>
-        </Menu>
+        </MenuOld>
       </div>
     </div>
   {/if}
