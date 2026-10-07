@@ -8,7 +8,7 @@ import Snowy from 'virtual:icons/material-symbols/cloudy-snowing';
 import { getSystemTheme } from "./prepaint/shared";
 import { assertNonEmpty } from "../types";
 import { isLight, opaqueColor } from "./color";
-import type { UUID } from "./main.svelte";
+import type { UUID } from "./main";
 import type { StyleRuntime, StyleRuntimeReadonly } from "./mutation";
 import type { SystemTheme } from "./system-theme.svelte";
 import { type Component } from "svelte";

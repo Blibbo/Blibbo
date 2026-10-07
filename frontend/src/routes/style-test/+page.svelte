@@ -1,7 +1,7 @@
 <script lang="ts">
 import MainLayout from "$lib/components/MainLayout.svelte";
 import { DEFAULT_PRESET, STYLE_PRESETS } from "$lib/style/config";
-import { getStyleContext, overrideStyle } from "$lib/style/main.svelte";
+import { getStyleContext, overrideStyle } from "$lib/style/main";
 import { opaqueColor } from "$lib/style/color";
 import { staticAccent } from "$lib/style/accent";
 import StyleTest from "$lib/style/components/StyleTest.svelte";

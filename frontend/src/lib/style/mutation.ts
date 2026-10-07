@@ -1,7 +1,8 @@
 import type { ReadonlyDeep } from "type-fest";
-import type { RichStyleTypes, StyleCommons, StyleTypes, UUID } from "./main.svelte";
+import type { RichStyleTypes, StyleCommons, StyleTypes, UUID } from "./main";
 import type { SystemTheme } from "./system-theme.svelte";
 import { getSelectedProperty, getValidThemes, type SelectionProperty, type StyleRuntimeInfo } from "./derived";
+import type { StyleManager } from "./manager.svelte";
 
 export type StyleRuntime<Types extends StyleTypes = RichStyleTypes> =
   StyleCommons<Types, {
@@ -37,46 +38,64 @@ export function setPreference(
   systemTheme: SystemTheme,
   computed: StyleRuntimeInfo,
 ): void {
-  const newTargetProperty = getSelectedProperty(preference, systemTheme);
-
-  const index = [{
-    targetProperty: newTargetProperty,
-    preference,
-  }];
 
   if(preference === "system") {
-    index.push({
-      targetProperty: systemTheme === "dark"
-        ? "selectedLight"
-        : "selectedDark",
-      preference: systemTheme === "dark"
+    const oppositeTargetProperty = systemTheme === "dark"
+      ? "selectedLight"
+      : "selectedDark";
+    
+    if(!style[oppositeTargetProperty]) {
+      const oppositePreference = systemTheme === "dark"
         ? "light"
-        : "dark",
-    });
-  }
-  
-  for (const i of index) {
-    const valid =
-      getValidThemes(i.preference, style.themes, style.tagRotation, systemTheme);
-    const oldSelectedId = computed.selectedTheme.id;
-
-    const cached = style[i.targetProperty];
-    const isOldThemeStillValid =
-      ()=>valid.some(theme => theme.id === oldSelectedId);
-
-    let newSelected: UUID;
-    if(cached){
-      newSelected = cached;
-    } else if (isOldThemeStillValid()) {
-      newSelected = oldSelectedId;
-    } else {
-      newSelected = valid[0].id;
+        : "dark";
+      
+      style[oppositeTargetProperty] =
+        getValidThemes(
+          oppositePreference,
+          style.themes,
+          style.tagRotation,
+          systemTheme,
+        )[0].id;
     }
-
-    style[i.targetProperty] = newSelected;
   }
+
+  const valid =
+    getValidThemes(preference, style.themes, style.tagRotation, systemTheme);
+  const oldSelectedId = computed.selectedTheme.id;
+
+  const newTargetProperty = getSelectedProperty(preference, systemTheme);
+
+  const cached = style[newTargetProperty];
+  const isOldThemeStillValid =
+    ()=>valid.some(theme => theme.id === oldSelectedId);
+
+  let newSelected: UUID;
+  if(cached){
+    newSelected = cached;
+  } else if (isOldThemeStillValid()) {
+    newSelected = oldSelectedId;
+  } else {
+    newSelected = valid[0].id;
+  }
+
+  style[newTargetProperty] = newSelected;
 
   style.preference = preference;
+}
+
+export function setTagRotation(
+  newTagRotation: StyleRuntime["tagRotation"],
+  manager: StyleManager,
+  
+): void {
+  if (!newTagRotation || newTagRotation.size === 0) {
+    manager.runtime.tagRotation = newTagRotation;
+    return;
+  }
+
+  const selectionProperty = manager.computed.selectionProperty;
+
+  
 }
 
 export function nextTheme(

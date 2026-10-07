@@ -1,6 +1,6 @@
 <script lang="ts">
   import ColorPicker from "$lib/components/color-picker/ColorPicker.svelte";
-  import { getStyleContext } from "../main.svelte";
+  import { getStyleContext } from "../main";
   import AccentPicker from "./AccentPicker.svelte";
 const manager = getStyleContext();
 

@@ -8,7 +8,7 @@ import { on } from "svelte/events";
 import type { HTMLAttributes } from "svelte/elements";
 import { IS_ANDROID_APP, IS_TOUCH_SCREEN } from "$lib/platform";
 import { onMount } from "svelte";
-    import { getStyleContext } from "../../style/main.svelte";
+    import { getStyleContext } from "../../style/main";
     import { STYLE_PRESETS } from "../../style/config";
 
 type Props = {

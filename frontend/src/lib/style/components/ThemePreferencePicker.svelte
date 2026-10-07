@@ -3,7 +3,7 @@ import Select from "$lib/components/Select.svelte";
 import typia from "typia";
 import NextTheme from "./NextTheme.svelte";
 import type { StyleRuntime } from "../mutation";
-import { getStyleContext } from "../main.svelte";
+import { getStyleContext } from "../main";
 
 let preferences = typia.misc.literals<StyleRuntime["preference"]>();
 

@@ -1,9 +1,9 @@
 import type { ReadonlyDeep } from "type-fest";
-import type { DryStyleTypes, StyleCommons, UUID } from "./main.svelte";
+import type { DryStyleTypes, StyleCommons, UUID } from "./main";
 import { DARK, getSystemTheme, LIGHT, ON_DARK, ON_LIGHT } from "./prepaint/shared";
 import { mapNonEmpty } from "../types";
 import { opaqueColor, isLight, readableOnLight, readableOnDark } from "./color";
-import type { StyleRuntime } from "./mutation";
+import { setTagRotation, type StyleRuntime } from "./mutation";
 import { dynamicAccent, dynamicAccent2, hydrateAccent, hydrateAccent2, dryStaticAccent as staticAccent } from "./accent";
 
 export type StyleConfig = ReadonlyDeep<
@@ -14,25 +14,33 @@ export type StyleConfig = ReadonlyDeep<
   }>
 >;
 
-// accents: hotter pink: #ff0063 light blue: #00FFF3 light pink: #C4588C purple: #9B61B0
-export const ACCENT = "#67787c";
-export const JENNI_ACCENT = "#F00073";
-export const BLUE_ACCENT = "#36D";
-export const GREEN_ACCENT = "#61B09C";
-export const ORANGE_ACCENT = "#E8541A";
-export const YELLOW_ACCENT = "#D9ED00";
-export const LIGHT_ORANGE_ACCENT = "#D99A52";
+export const ACCENTS = {
+  default: "#67787c",
+  jenni: "#f00073", // hotter ff0063
+  blue: "#36d",
+  green: "#61b09c",
+  orange: "#d9ed00",
+  yellow: "#d9ed00",
+  lightOrange: "#d99a52",
+  red: "#d6546b",
+  purple: "#9b61b0",
+  lightPink: "#c4588c",
+  lightBlue: "#00fff3",
+} as const;
+
+export const DEFAULT_ACCENT = ACCENTS.default;
 
 const PRESET_GENERAL = {
   onLight: ON_LIGHT,
   onDark: ON_DARK,
   accent2: dynamicAccent2("AccentComplementary"),
+  tagRotation: [],
 } as const;
 const PRESET_TOGGLEABLE = presetToggleable();
 const PRESET_SYSTEM = presetSystem();
 const PRESET_CLOUDY = {
   ...PRESET_TOGGLEABLE,
-  accent: staticAccent(ACCENT),
+  accent: staticAccent(DEFAULT_ACCENT),
   themes: [
     ...PRESET_TOGGLEABLE.themes,
     ...PRESET_TOGGLEABLE.themes,
@@ -47,28 +55,12 @@ const PRESET_CLOUDY = {
 export const STYLE_PRESETS = {
   default: {
     ...PRESET_SYSTEM,
-    accent: staticAccent(ACCENT),
-    // accent2: staticAccent(ORANGE_ACCENT),
-  },
-  hotPink: {
-    ...PRESET_SYSTEM,
-    accent: staticAccent(JENNI_ACCENT),
-  },
-  blue: {
-    ...PRESET_SYSTEM,
-    accent: staticAccent(BLUE_ACCENT),
-  },
-  monochrome: {
-    ...PRESET_SYSTEM,
-    accent: dynamicAccent("Page"),
-  },
-  red: {
-    ...PRESET_SYSTEM,
-    accent: staticAccent("#d6546b"),
+    accent: staticAccent(DEFAULT_ACCENT),
+    // accent2: staticAccent(ACCENTS.orange),
   },
   toggleable: {
     ...PRESET_TOGGLEABLE,
-    accent: staticAccent(ACCENT),
+    accent: staticAccent(DEFAULT_ACCENT),
   },
   cloudy: PRESET_CLOUDY,
   weather: {
@@ -94,7 +86,7 @@ export const STYLE_PRESETS = {
   },
   redText: {
     ...PRESET_TOGGLEABLE,
-    accent: staticAccent(ACCENT),
+    accent: staticAccent(DEFAULT_ACCENT),
     accent2: dynamicAccent2("AccentComplementary"),
     onLight: "#9C0000",
     onDark: "#FFB5B5",

@@ -2,8 +2,8 @@
 import ColorPicker from "$lib/components/color-picker/ColorPicker.svelte";
 import { staticAccent } from "../accent";
 import { readableOnDark, readableOnLight } from "../color";
-import { ACCENT } from "../config";
-import { getStyleContext } from "../main.svelte";
+import { DEFAULT_ACCENT } from "../config";
+import { getStyleContext } from "../main";
 import { ON_DARK, ON_LIGHT } from "../prepaint/shared";
 import AccentPicker from "./AccentPicker.svelte";
 import TagsInput from "./TagsInput.svelte";
@@ -27,14 +27,14 @@ const manager = getStyleContext();
       />
 
       <ThemeColorPicker inherited={!theme.accent} label=Accent
-        onAdd={()=>theme.accent = staticAccent(ACCENT)}
+        onAdd={()=>theme.accent = staticAccent(DEFAULT_ACCENT)}
         onRemove={()=>theme.accent = undefined}
       >
         <AccentPicker class="flex-1" bind:accent={theme.accent!} kind="accent"/>
       </ThemeColorPicker>
 
       <ThemeColorPicker inherited={!theme.accent2} label=Accent2
-        onAdd={()=>theme.accent2 = staticAccent(ACCENT)}
+        onAdd={()=>theme.accent2 = staticAccent(DEFAULT_ACCENT)}
         onRemove={()=>theme.accent2 = undefined}
       >
         <AccentPicker class="flex-1" bind:accent={theme.accent2!} kind="accent2"/>

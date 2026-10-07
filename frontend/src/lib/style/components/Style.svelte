@@ -1,11 +1,12 @@
 <script lang="ts">
 import type { StyleConfig } from "../config";
 import { type Snippet } from "svelte";
-import { getStyleContext, setStyleContext, StyleManager } from "../main.svelte";
+import { getStyleContext, setStyleContext } from "../main";
 import type { HTMLAttributes } from "svelte/elements";
 import { STYLE_ROOT } from "../prepaint/shared";
 import type { StyleRuntimeInfo } from "../derived";
 import type { ColorVariables } from "../variables";
+  import { StyleManager } from "../manager.svelte";
 
 type Props = {
   persistKey: string;

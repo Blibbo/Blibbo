@@ -5,10 +5,11 @@ import { findTheme, type StyleRuntimeInfo } from "./derived";
 import { persistStyle } from "./persist";
 import type { StyleRuntimeReadonly } from "./mutation";
 import type { SystemTheme } from "./system-theme.svelte";
-import { StyleManager, THEME_SWITCH_DURATION } from "./main.svelte";
+import { THEME_SWITCH_DURATION } from "./main";
 import { tick } from "svelte";
 import type { ReadonlyDeep } from "type-fest";
 import type { ColorVariables } from "./variables";
+import type { StyleManager } from "./manager.svelte";
 
 export function applyStyle(
   manager: ReadonlyDeep<StyleManager>,

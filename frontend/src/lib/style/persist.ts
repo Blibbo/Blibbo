@@ -2,7 +2,7 @@ import typia from "typia";
 import { LOCALSTORAGE_PREFIX } from "./prepaint/shared";
 import { mapNonEmpty } from "../types";
 import { opaqueColor, readableOnDark, readableOnLight } from "./color";
-import type { DryStyleTypes } from "./main.svelte";
+import type { DryStyleTypes } from "./main";
 import { hydratePreset, type StyleConfig } from "./config";
 import type { StyleRuntime, StyleRuntimeReadonly } from "./mutation";
 import { dehydrateAccent, dehydrateAccent2, hydrateAccent, hydrateAccent2 } from "./accent";
@@ -50,8 +50,6 @@ function hydrateStylePersist(stored: StylePersist): StyleRuntime {
     onLight: readableOnLight(stored.onLight),
     onDark: readableOnDark(stored.onDark),
 
-    tagRotation: stored.tagRotation ? new Set(stored.tagRotation) : undefined,
-
     themes: mapNonEmpty(stored.themes, (theme) => ({
       ...theme,
       
@@ -60,8 +58,6 @@ function hydrateStylePersist(stored: StylePersist): StyleRuntime {
       accent2: theme.accent2 ? hydrateAccent2(theme.accent2) : undefined,
       onLight: theme.onLight ? readableOnLight(theme.onLight) : undefined,
       onDark: theme.onDark ? readableOnDark(theme.onDark) : undefined,
-
-      tags: theme.tags ? new Set(theme.tags) : undefined,
     })),
   };
 }

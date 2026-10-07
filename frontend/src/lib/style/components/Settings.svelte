@@ -1,7 +1,7 @@
 <script lang="ts">
 import { Dialog } from "$lib/components/dialog";
 import ChevronLeft from "$lib/components/icons/ChevronLeft.svelte";
-import { getStyleContext } from "../main.svelte";
+import { getStyleContext } from "../main";
 import AccentPicker from "./AccentPicker.svelte";
 import GlobalColorsEditor from "./GlobalColorsEditor.svelte";
 import TagsInput from "./TagsInput.svelte";

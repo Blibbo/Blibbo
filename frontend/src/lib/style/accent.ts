@@ -1,5 +1,5 @@
 import { validColor, type ValidColor } from "./color";
-import type { StyleTypes } from "./main.svelte";
+import type { StyleTypes } from "./main";
 import type { AccentName, DynamicAccent2Value, DynamicAccentValue, DynamicAccentValueFor } from "./accent-variables";
 
 export type Accent<

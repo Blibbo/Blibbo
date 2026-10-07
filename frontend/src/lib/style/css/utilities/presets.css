@@ -45,7 +45,7 @@
 @utility preset-scrollbar {
   @apply
     overflow-auto
-    scrollbar-thumb-primary-visible-on-surface
+    scrollbar-thumb-primary-readable-on-surface
     scrollbar-track-surface
     scrollbar-thin
   ;

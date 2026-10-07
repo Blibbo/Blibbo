@@ -4,10 +4,10 @@ import { Switch } from "$lib/components/switch";
 import typia from "typia";
 import { dynamicAccent, dynamicAccent2, staticAccent, type Accent, type Accent2 } from "../accent";
 import { type DynamicAccent2Value, type DynamicAccentValue } from "../accent-variables";
-import { ACCENT, BLUE_ACCENT, GREEN_ACCENT, JENNI_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT } from "../config";
 import ColorPicker from "$lib/components/color-picker/ColorPicker.svelte";
 import {ColorPicker as ArkColorPicker} from "@ark-ui/svelte";
-import { getStyleContext } from "../main.svelte";
+import { getStyleContext } from "../main";
+  import { ACCENTS } from "../config";
 
 type Props = {
   noSwitch?: boolean | undefined;
@@ -39,7 +39,7 @@ const manager = getStyleContext();
     <ColorPicker lazyMount unmountOnExit
       type="any"
       bind:value={accent.value}
-      swatches={[ACCENT, JENNI_ACCENT, BLUE_ACCENT, GREEN_ACCENT, ORANGE_ACCENT, YELLOW_ACCENT]}
+      swatches={Object.values(ACCENTS)}
       labelClass="capitalize"
       label={kind ?? "Accent"}
     />
@@ -81,7 +81,7 @@ const manager = getStyleContext();
         if(dynamic) {
           accent = dynamicAccent("OnPage");
         } else {
-          accent = staticAccent(ACCENT);
+          accent = staticAccent(DEFAULT_ACCENT);
         }
       }}
     >
